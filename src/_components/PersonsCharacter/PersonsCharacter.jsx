@@ -8,20 +8,17 @@ import { PersonCharacter } from '../';
 
 export const  PersonsCharacter = ({data}) => {
 
-    const {results: [...characters]} = data
+    
 
     return (
         <>
             <ul className={styles.list}>
-                {characters.length && characters.map(item => <PersonCharacter character={item} key={item.id}/>)}
+                {data.length && [...data].map(item => <PersonCharacter character={item} key={item.id}/>)}
             </ul>
         </>
     )
 }
 
 PersonsCharacter.propTypes = {
-    data: PropTypes.shape({
-        info: PropTypes.object,
-        results: PropTypes.arrayOf(PropTypes.object)
-    })
+    data:  PropTypes.arrayOf(PropTypes.object)
 }

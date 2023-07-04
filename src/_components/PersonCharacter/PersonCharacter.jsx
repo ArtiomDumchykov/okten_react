@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './PersonCharacter.module.scss';
 
-export const PersonCharacter = ({character: {id,name,status,species,gender,image}}) => {
+export const PersonCharacter = ({character: {id,name,surname, info,image}}) => {
 
 
 
@@ -17,10 +17,7 @@ export const PersonCharacter = ({character: {id,name,status,species,gender,image
                 </div>
 
                 <div className={styles.info}>
-                    <h2 className={styles.info_name_text}>Name: {name}</h2>
-                    <p>Species - {species}</p>
-                    <p>Gender - {gender}</p>
-                    <p>Status {status}</p>
+                    <h2 className={styles.info_name_text}>Name: {name} {surname}</h2>
                 </div>
 
             </div>
@@ -33,9 +30,8 @@ PersonCharacter.propTypes = {
     character: PropTypes.shape({
         id: PropTypes.number,
         name: PropTypes.string,
-        status: PropTypes.string,
-        species: PropTypes.string,
-        gender: PropTypes.string,
+        surname: PropTypes.string,
+        info: PropTypes.string,
         image: PropTypes.string,
     })
 }
