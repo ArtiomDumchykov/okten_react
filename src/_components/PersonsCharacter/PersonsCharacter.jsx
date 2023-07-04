@@ -1,12 +1,27 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export const  PersonsCharacter = (props) => {
-    const {characters} = props
+import styles from './PersonsCharacter.module.scss';
+
+import { PersonCharacter } from '../';
+
+
+export const  PersonsCharacter = ({data}) => {
+
+    const {results: [...characters]} = data
+
     return (
         <>
-            <ul>
-                {characters.length && characters.map(item => <PersonsCharacter character={item} key={item.id}/>)}
+            <ul className={styles.list}>
+                {characters.length && characters.map(item => <PersonCharacter character={item} key={item.id}/>)}
             </ul>
         </>
     )
+}
+
+PersonsCharacter.propTypes = {
+    data: PropTypes.shape({
+        info: PropTypes.object,
+        results: PropTypes.arrayOf(PropTypes.object)
+    })
 }

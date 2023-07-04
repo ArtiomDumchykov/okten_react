@@ -1,11 +1,21 @@
+import React from 'react';
 import './App.css';
-import { PersonCharacter } from './_components';
+
+import { PersonsCharacter } from './_components';
+
+
+import {data} from './_db'
 
 
 function App() {
+
+
   return (
     <>
-      <PersonCharacter person={{name: "Artem"}}/>
+      <div className='_container'>
+        <PersonsCharacter data={data}/>
+      </div>
+
     </>
   );
 }

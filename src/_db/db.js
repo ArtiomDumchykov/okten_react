@@ -1,4 +1,4 @@
-const data = {
+export const data = {
 	info: {
 		count: 826,
 		pages: 42,

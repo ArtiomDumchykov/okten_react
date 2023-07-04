@@ -1,6 +1,36 @@
-.title { 
+.item_character { 
+
+    // flex: 1 1 24%;
+    max-width: 300px;
+    overflow: hidden;
+
     background-color: aqua;
     color: red;
-
     padding: 15px 7px;
+}
+
+.item_wrap {
+    display: flex;
+    flex-direction: column;
+}
+.item_img_wrap {
+    max-width: 300px;
+    max-height: 300px;
+    
+}
+
+.item__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info {
+    
+
+}
+.info_name_text {
+ font-size: 20px;
+ 
 }
