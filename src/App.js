@@ -7,8 +7,8 @@ function App() {
       <PersonComponent person={{name: "Artem1"}}/>
       <PersonComponent person={{name: "Artem2"}}/>
       <PersonComponent person={{name: "Artem3"}}/>
-      <PersonComponent person={{name: "Artem4"}}/>
-      <PersonComponent person={{name: "Artem5"}}/>
+      
+      
     </>
   );
 }
