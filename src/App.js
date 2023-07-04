@@ -1,10 +1,11 @@
 import './App.css';
-import { PersonComponent } from './_components/PersonComponent/PersonComponent.jsx';
+import { PersonCharacter } from './_components';
+
 
 function App() {
   return (
     <>
-      <PersonComponent person={{name: "Artem"}}/>
+      <PersonCharacter person={{name: "Artem"}}/>
     </>
   );
 }
