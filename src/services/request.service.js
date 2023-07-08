@@ -36,6 +36,7 @@ export class RequestServer {
 }
 
 export class PostsRequestService extends RequestServer {
+    #postsUrl = RequestServer.getURL("posts")
     constructor() {
         super()
         if (typeof PostsRequestService.instance === "object") {
@@ -44,13 +45,21 @@ export class PostsRequestService extends RequestServer {
         PostsRequestService.instance = this
     }
 
-    getPosts() {
-        const url = RequestServer.getURL("posts")
+    get postsUrl(){
+        return this.#postsUrl
+    }
+
+    #getaxiosData(url) {
         return RequestServer.getAxiosData(url)
     }
 
+    getPosts() {
+        const url = this.postsUrl
+        return this.#getaxiosData(url)
+    }
+
     getPost(postId) {
-        const url = RequestServer.getURL("posts");
-        return RequestServer.getAxiosData(`${url}/${postId}`)
+        const url = this.postsUrl
+        return this.#getaxiosData(`${url}/${postId}`)
     }
 }
