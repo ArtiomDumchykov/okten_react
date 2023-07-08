@@ -5,7 +5,7 @@ import { Posts } from './components';
 function App() {
   return (
     <>
-      <Posts/>
+      {/* <Posts/> */}
     </>
   );
 }

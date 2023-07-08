@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import { usePost } from '../../../hooks';
 import { PostDetail } from '../PostDetail/PostDetail';
@@ -23,4 +24,11 @@ export  function Post({post}) {
       </div>
     </li>
   )
+}
+
+Post.propTypes = {
+  post: PropTypes.shape({
+    id: PropTypes.number,
+    title: PropTypes.string
+  })
 }
