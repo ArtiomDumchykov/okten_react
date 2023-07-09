@@ -2,7 +2,7 @@ import React from 'react'
 import { useLaunches } from '../../hooks/useLaunches'
 import { Launch } from './Launch/Launch'
 import styles from './Launches.module.scss'
-import { useObserver } from '../../hooks'
+import { usePagination } from '../../hooks'
 
 export const utils_launches = {
   limit: 10,
@@ -20,7 +20,7 @@ export const utils_launches = {
 
 export  const Launches = () => {
   const  {pages, setPages} = useLaunches();
-  useObserver({pages, setPages})
+  usePagination({pages, setPages})
 
   return (
     <>

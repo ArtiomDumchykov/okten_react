@@ -19,14 +19,13 @@ export  const useLaunches =  () => {
                 const {data} = await launchesRequestService.getLaunches();
                 const newData = dataFilter(data, ({launch_year: year}) => year !== '2020')
                                     .map(({mission_name, launch_year, links}, index) => ({
-                                    id: index,
-                                    mission_name,
-                                    launch_year,
-                                    links: {
-                                        mission_patch_small: links.mission_patch_small || spacexDefault
-
-                                    }
-                                }))              
+                                        id: index,
+                                        mission_name,
+                                        launch_year,
+                                        links: {
+                                            mission_patch_small: links.mission_patch_small || spacexDefault
+                                        }
+                                    }))              
                 utils_launches.allLaunchers = newData  
                 createPages(utils_launches);        
                 setPages(utils_launches.sortedPages["page_1"]);

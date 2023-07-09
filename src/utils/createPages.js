@@ -1,6 +1,8 @@
 export function createPages({limit, allLaunchers, sortedPages}) {
-    if (allLaunchers === null) return null;
+    if (!allLaunchers) return null;
+
     const totalPages = Math.ceil(allLaunchers.length / limit);
+    
     for (let i = 1; i <= totalPages; i++) {
       const startIndex = (i - 1) * limit;
       const endIndex = i * limit;
