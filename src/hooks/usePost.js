@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { PostsRequestService } from "../services/request.service";
 
-const postsRequestService = new PostsRequestService()
+const postsRequestService = new PostsRequestService();
 
 export const usePost = (id) => {
   const [isShow, setIsShow] = useState(false);

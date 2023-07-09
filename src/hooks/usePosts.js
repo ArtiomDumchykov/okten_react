@@ -3,7 +3,6 @@ import { PostsRequestService } from "../services/request.service";
 
 const postsRequestService = new PostsRequestService()
 
-
 export const usePosts = () => {
     const [posts, setPosts] = useState([]);
     const [error, setError] = useState("")

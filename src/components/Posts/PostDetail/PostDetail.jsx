@@ -18,6 +18,6 @@ PostDetail.propTypes = {
     id: PropTypes.number,
     userId: PropTypes.number,
     title: PropTypes.string,
-    body: PropTypes.array
+    body: PropTypes.string
   })
 }

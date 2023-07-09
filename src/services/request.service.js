@@ -33,10 +33,18 @@ export class RequestServer {
 
         throw new Error(`Invalid URL key: ${urlKey}`);
     }
+
+    #createUrl() {
+        throw new Error("Create base URL")
+    }
+
+    #getData() {
+        throw new Error("Create data")
+    }
 }
 
 export class PostsRequestService extends RequestServer {
-    #postsUrl = RequestServer.getURL("posts")
+    #posts = "posts"
     constructor() {
         super()
         if (typeof PostsRequestService.instance === "object") {
@@ -44,22 +52,59 @@ export class PostsRequestService extends RequestServer {
         }
         PostsRequestService.instance = this
     }
-
-    get postsUrl(){
-        return this.#postsUrl
+    get posts() {
+        return this.#posts
     }
 
-    #getaxiosData(url) {
+    #createUrl(url) {
+        return RequestServer.getURL(url)
+    }
+
+    #getData(url) {
         return RequestServer.getAxiosData(url)
     }
 
     getPosts() {
-        const url = this.postsUrl
-        return this.#getaxiosData(url)
+        const url = this.#createUrl(this.posts)
+        return this.#getData(url)
     }
 
     getPost(postId) {
-        const url = this.postsUrl
-        return this.#getaxiosData(`${url}/${postId}`)
+        const url = this.#createUrl(this.posts)
+        return this.#getData(`${url}/${postId}`)
     }
 }
+export class LaunchesRequestService extends RequestServer {
+    #launches = "launches"
+    constructor() {
+        super()
+        if (typeof LaunchesRequestService.instance === "object") {
+            return LaunchesRequestService.instance
+        }
+        LaunchesRequestService.instance = this
+    }
+    get launches() {
+        return this.#launches
+    }
+
+    #createUrl(url) {
+        return RequestServer.getURL(url)
+    }
+
+    #getData(url) {
+        return RequestServer.getAxiosData(url)
+    }
+
+    getLaunches(paginationParams) {
+        let url = this.#createUrl(this.launches)
+
+        if (!!paginationParams) {
+            url += paginationParams
+        }
+
+        return this.#getData(url)
+    }
+
+}
+
+
