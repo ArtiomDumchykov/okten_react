@@ -12,12 +12,12 @@ function App() {
   return (
     <>
       <div className='wrapper'>
-        <Posts />
+        {/* <Posts /> */}
         {/* <Launches/> */}
     
-        {/* <Users setUserId={setUserId}/>
-        {!!userId && <UserPosts userId={userId}/>} */}
-        
+        <Users setUserId={setUserId}/>
+        {!!userId && <UserPosts userId={userId}/>}
+
         {/* { !preLoader && <Posts />} */}
       </div>
       {/* {preLoader &&  <PreLoader/>} */}
