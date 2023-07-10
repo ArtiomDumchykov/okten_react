@@ -7,8 +7,8 @@ function App() {
   const [userId, setUserId] = useState(null) 
   return (
     <>
-      {/* <Posts/> */}
-      {/* <Launches/> */}
+      <Posts/>
+      <Launches/>
   
       {/* <Users setUserId={setUserId}/>
       {!!userId && <UserPosts userId={userId}/>} */}
