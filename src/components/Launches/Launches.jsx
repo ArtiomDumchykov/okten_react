@@ -2,7 +2,8 @@ import React from 'react'
 import { useLaunches } from '../../hooks/useLaunches'
 import { Launch } from './Launch/Launch'
 import styles from './Launches.module.scss'
-import { usePagination } from '../../hooks'
+import { usePagination, usePreLoader } from '../../hooks'
+import { PreLoader } from '../PreLoader/PreLoader'
 
 export const utils_launches = {
 	limit: 10,
@@ -19,18 +20,26 @@ export const utils_launches = {
 }
 
 export const Launches = () => {
+	
 	const { pages, setPages } = useLaunches();
 	usePagination({ pages, setPages })
-
+	const {preLoader} = usePreLoader(pages)
 	return (
 		<>
-			<div className={styles.launches__container + ' _container'}>
-				<ul className={styles.launches__list + " launcher__list"}>
-					{
-						!!pages?.length && [...pages].map((item) => <Launch key={`${item.mission_name}_${item.id}`} launch={item} />)
-					}
-				</ul>
-			</div>
+			{
+				!preLoader ? (
+					<div className={styles.launches__container + ' _container'}>
+						<ul className={styles.launches__list + " launcher__list"}>
+							{
+								!!pages?.length && [...pages].map((item) => <Launch key={`${item.mission_name}_${item.id}`} launch={item} />)
+							}
+						</ul>
+					</div>
+				) : (
+					<PreLoader/>
+				)
+			}
+			
 		</>
 	)
 }
