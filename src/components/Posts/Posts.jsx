@@ -9,6 +9,10 @@ import { PreLoader } from '../PreLoader/PreLoader';
 export function Posts() {
 	const { posts } = usePosts()
 	const {preLoader} = usePreLoader(posts)
+
+	// const  handlerIsShow = () => {
+	// 	setIsShow(prev => !prev)
+	// }
 	
 	return (
 		<>	
