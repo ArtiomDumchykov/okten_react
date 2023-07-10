@@ -1,22 +1,26 @@
 import { useState, useEffect } from "react";
-import { PostsRequestService } from "../services/request.service";
+// import { PostsRequestService } from "../services/request.service";
+import { PostsRequestService } from "../services";
 
-const postsRequestService = new PostsRequestService()
+const postsRequestService = new PostsRequestService();
 
 export const usePosts = () => {
     const [posts, setPosts] = useState([]);
-    const [error, setError] = useState("")
+    const [error, setError] = useState("");
 
     useEffect(() => {
         (async() => {
             try {
-                const {data} = await postsRequestService.getPosts()
-                setPosts(data)
+                const {data} = await postsRequestService.getPosts();
+                setPosts(data);
             } catch (error) {
-                setError(error.message)
+                setError(error.message);
             }
         })()
-    }, [])
+    }, []);
 
-    return {posts, setPosts, error, setError}
+    return {
+        posts, setPosts, 
+        error, setError
+    }
 }

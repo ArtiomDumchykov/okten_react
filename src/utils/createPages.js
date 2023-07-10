@@ -1,5 +1,7 @@
 export function createPages({limit, allLaunchers, sortedPages}) {
-    if (!allLaunchers) return null;
+    if (!allLaunchers) {
+      return null;
+    }
 
     const totalPages = Math.ceil(allLaunchers.length / limit);
     

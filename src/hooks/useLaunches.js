@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
-import { LaunchesRequestService } from "../services/request.service";
-// import { dataFilter } from "../utils/filter";
+import { LaunchesRequestService } from "../services";
 import { createPages, dataFilter } from "../utils";
 import { utils_launches } from "../components";
-
-import spacexDefault from '../assets/spacex_default.png';
 
 const launchesRequestService = new LaunchesRequestService();
 
 export  const useLaunches =  () => {
-
     const [pages, setPages] = useState(utils_launches.pages)
     const [error, setError] = useState("");
 
@@ -23,7 +19,7 @@ export  const useLaunches =  () => {
                                         mission_name,
                                         launch_year,
                                         links: {
-                                            mission_patch_small: links.mission_patch_small || spacexDefault
+                                            mission_patch_small: links.mission_patch_small
                                         }
                                     }))              
                 utils_launches.allLaunchers = newData  
@@ -38,10 +34,7 @@ export  const useLaunches =  () => {
     }, [])
 
     return {
-        
-        pages,
-        setPages,
-        error,
-        setError
+        pages, setPages,
+        error, setError
     }
 }
