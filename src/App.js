@@ -5,16 +5,13 @@ import { UserPosts } from './components/Users';
 
 
 function App() {
-  const [userId, setUserId] = useState(null) 
+ 
 
   return (
     <>
       <div className='wrapper'>
         <Posts />
-        {/* <Launches/> */}
-    
-        {/* <Users setUserId={setUserId}/>
-        {!!userId && <UserPosts userId={userId}/>} */}
+        
       </div>
     </>
   );
