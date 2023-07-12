@@ -4,9 +4,10 @@ import { UsersRequestService } from "../services";
 const usersRequestService = new UsersRequestService();
 
 export const useUserPosts = (userId) => {
+   
+
     const [userPosts, setUserPosts] = useState([]);
     const [error, setError] = useState("");
-    
     useEffect(() => {
         (async() => {
             try {

@@ -1,34 +1,32 @@
 import React, { useState } from 'react';
 import './App.css';
-// import { Users, Launches, Posts} from './components';
-// import { UserPosts } from './components/Users';
+
+import {useUsers} from './hooks';
+
+import { Users } from './components';
+
 
 
 function App() {
+  console.log("RENDER");
+  const { users } = useUsers();
+  
+  const [userId, setUserId] = useState(null)
 
+  const handleGetUserPosts = ({userId, userName}) => {
+    alert(userId + userName)
+    setUserId(userId)
+  }
 
   return (
     <>
       <div className='wrapper'>
-
+        <Users users={users} handleGetUserPosts={handleGetUserPosts}/>
+        {/* {!!userId && <Button>gdhdahasdhadha</Button>} */}
       </div>
     </>
   );
 }
-// function App() {
-//   const [userId, setUserId] = useState(null) 
 
-//   return (
-//     <>
-//       <div className='wrapper'>
-//         {/* <Posts /> */}
-//         {/* <Launches/> */}
-    
-//         <Users setUserId={setUserId}/>
-//         {!!userId && <UserPosts userId={userId}/>}
-//       </div>
-//     </>
-//   );
-// }
 
 export default App;
