@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button } from '../../Button/Button'
+import { ArrayOneContext } from '../../../App'
 
-export  function SubChild_2_1({handlePushArr1}) {
+export  function SubChild_2_1() {
+  const {handlePushArr1} = useContext(ArrayOneContext)
   return (
     <div>
         <h3>SubChild_2_1</h3>

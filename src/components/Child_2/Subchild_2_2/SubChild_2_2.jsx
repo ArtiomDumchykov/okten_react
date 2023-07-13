@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import {ArrayTwoContext } from '../../../App'
 
-export  function SubChild_2_2({data}) {
+export  function SubChild_2_2() {
+  const {arr2: data} = useContext(ArrayTwoContext)
   return (
     <div>
         <h3>SubChild_2_2</h3>

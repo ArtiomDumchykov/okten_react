@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import {ArrayOneContext} from '../../../App';
 
-export  function SubChild_1_1({data}) {
+export  function SubChild_1_1() {
+    const {arr1: data} = useContext(ArrayOneContext)
     console.log(data);
     return (
     <div>

@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button } from '../../Button/Button'
+import { ArrayTwoContext } from '../../../App'
 
-export  function SubChild_1_2({handlePushArr2}) {
+export  function SubChild_1_2() {
+  const {handlePushArr2} = useContext(ArrayTwoContext)
   return (
     <div>
         <h3>SubChild_1_2</h3>
