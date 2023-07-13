@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
-import {ArrayTwoContext } from '../../../App'
+import {Context } from '../../../App'
 
 export  function SubChild_2_2() {
-  const {arr2: data} = useContext(ArrayTwoContext)
+  const {arr2: data} = useContext(Context)
   return (
     <div>
         <h3>SubChild_2_2</h3>

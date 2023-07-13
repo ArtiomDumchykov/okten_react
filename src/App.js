@@ -3,28 +3,40 @@ import './App.css';
 import { Child_1 as Child1, Child_2 as Child2 } from './components';
 
 
-export const ArrayOneContext = createContext(null)
-export const ArrayTwoContext = createContext(null)
+export const Context = createContext(null)
+
 
 function App() {
   const [arr1, setArr1] = useState([1, 2, 3])
-  const [arr2, setArr2] = useState([1, 2, 3])
+  const [arr2, setArr2] = useState([1, 2, 3, 4])
 
 
-  const handlePushArr1 = () => {
-    setArr1(prev => {
-      let lastElement = prev.at(-1);
-      return [...prev, lastElement + 1]
-    })
+  // const handlePushArr1 = () => {
+  //   setArr1(prev => {
+  //     let lastElement = prev.at(-1);
+  //     return [...prev, lastElement + 1]
+  //   })
+  // }
+
+  // const handlePushArr2 = () => {
+  //   setArr2(prev => {
+  //     let lastElement = prev.at(-1);
+  //     return [...prev, lastElement + 1]
+  //   })
+  // }
+
+  const handlePushArr1 = (nextValue) => {
+    console.log(nextValue);
+    setArr1(prev =>  [...prev, nextValue])
   }
 
-  const handlePushArr2 = () => {
-    setArr2(prev => {
-      let lastElement = prev.at(-1);
-      return [...prev, lastElement + 1]
-    })
+  const handlePushArr2 = (nextValue) => {
+    console.log(nextValue);
+    setArr2(prev => [...prev, nextValue])
   }
 
+
+  /*
   const handlePushTo = () => {
     const random = Math.floor(Math.random() * 3)
     switch (random) {
@@ -40,11 +52,11 @@ function App() {
         break;
     }
   }
+  */
 
   return (
     <>
-      <ArrayOneContext.Provider value={{arr1, handlePushArr1}}>
-        <ArrayTwoContext.Provider value={{arr2, handlePushArr2}}>
+      <Context.Provider value={{arr1, arr2, handlePushArr1, handlePushArr2}}>
           <div style={{
             padding: "20px 15px",
           }}>
@@ -56,12 +68,11 @@ function App() {
                 backgroundColor: "red",
                 margin: "10px 0"
               }}
-              onMouseOver={() => handlePushTo()}
+              // onMouseOver={() => handlePushTo()}
             />
             <Child2/>
           </div>
-        </ArrayTwoContext.Provider>
-      </ArrayOneContext.Provider>
+      </Context.Provider>
 
     </>
   );
