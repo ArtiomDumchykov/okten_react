@@ -3,7 +3,6 @@ import { Context } from '../../../App';
 
 export function SubChild_1_1() {
     const { arr1: data } = useContext(Context)
-    console.log(data);
     return (
         <div>
             <h3>SubChild_1_1</h3>

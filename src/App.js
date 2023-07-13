@@ -24,14 +24,17 @@ function App() {
 
   const handlePushArr1 = (nextValue) => {
     console.log(nextValue);
-    setArr1(prev => [...prev, nextValue])
+    setArr1(prev => [...prev, nextValue]);
+   
   }
 
   const handlePushArr2 = (nextValue) => {
     console.log(nextValue);
-    setArr2(prev => [...prev, nextValue])
+    setArr2(prev => [...prev, nextValue]);
+    
   }
-
+  console.log("Array Data 1", arr1);
+  console.log("Array Data 2", arr2);
   /*
   const handlePushTo = () => {
     const random = Math.floor(Math.random() * 3)
