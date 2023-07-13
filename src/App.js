@@ -1,38 +1,60 @@
 import React, { useState, createContext } from 'react';
 import './App.css';
+import { Child_1 as Child1, Child_2 as Child2 } from './components';
 
-import { useUserPosts, useUsers } from './hooks';
-
-import { Posts, Users } from './components';
-
-export const UsersContext = createContext(null)
-export const UserPostsContext = createContext(null)
 
 function App() {
-  const { users } = useUsers();
+  const [arr1, setArr1] = useState([1,2,3])
+  const [arr2, setArr2] = useState([1,2,3])
 
-  const [userId, setUserId] = useState(null)
-  const [userNameId, setUserNameId] = useState(null)
 
-  const { userPosts } = useUserPosts(userId);
+  const handlePushArr1 = () => {
+    setArr1(prev => {
+      let lastElement = prev.at(-1);
+      return [...prev, lastElement + 1]
+    })
+  }
 
-  const handleGetUserPosts = ({ userId, userName }) => {
-    setUserId(userId);
-    setUserNameId(userName)
+  const handlePushArr2 = () => {
+    setArr2(prev => {
+      let lastElement = prev.at(-1);
+      return [...prev, lastElement + 1]
+    })
+  }
+
+  const handlePushTo = () => {
+    const random = Math.floor(Math.random() * 3)
+    switch(random) {
+      case 0: 
+        handlePushArr1();
+        break;
+      case 1: 
+        handlePushArr2();
+        break;
+      default:
+        handlePushArr1();
+        handlePushArr2();
+        break;
+    }
   }
 
   return (
     <>
-      <UsersContext.Provider value={{ users, handleGetUserPosts }}>
-        <div className='wrapper'>
-          <Users />
-          {
-            !!userId && <UserPostsContext.Provider value={{ userPosts, userNameId }}>
-              <Posts />
-            </UserPostsContext.Provider>
-          }
-        </div>
-      </UsersContext.Provider>
+    <div style={{
+      padding: "20px 15px",
+    }}>
+      <Child1 data={arr1} handlePushArr2={handlePushArr2}/>
+      <hr 
+        style={{
+          display: "block",
+          height: "5px",
+          backgroundColor: "red",
+          margin: "10px 0"
+        }}
+        onMouseOver={() => handlePushTo()}
+      />
+      <Child2 data={arr2} handlePushArr1={handlePushArr1}/>
+    </div>
     </>
   );
 }
