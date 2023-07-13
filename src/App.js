@@ -3,7 +3,7 @@ import './App.css';
 
 import {useUsers} from './hooks';
 
-import { Users } from './components';
+import { Posts, Users } from './components';
 
 
 
@@ -12,17 +12,20 @@ function App() {
   const { users } = useUsers();
   
   const [userId, setUserId] = useState(null)
+  const [userNameId, setUserNameId] = useState(null)
 
   const handleGetUserPosts = ({userId, userName}) => {
-    alert(userId + userName)
-    setUserId(userId)
+    // alert(userId + userName)
+    setUserId(userId);
+    setUserNameId(userName)
   }
 
   return (
     <>
       <div className='wrapper'>
         <Users users={users} handleGetUserPosts={handleGetUserPosts}/>
-        {/* {!!userId && <Button>gdhdahasdhadha</Button>} */}
+        
+        {!!userId && <Posts userId={userId} userName={userNameId}/>}
       </div>
     </>
   );
