@@ -17,7 +17,9 @@ export  function SubChild_1_2() {
             margin: "10px 0"
            }}
            onClick={() => handlePushArr2(c.count)}
-        >clickBtn</Button>
+        >
+          clickBtn
+        </Button>
     </div>
   )
 }
