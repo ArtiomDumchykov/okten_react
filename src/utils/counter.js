@@ -1,5 +1,5 @@
-function counter(n) { // Ар­гу­мент n функ­ции - скры­тая пе­ре­мен­ная
-    const x = n
+function counter(n) { 
+    const x = n; // Ар­гу­мент n функ­ции - скры­тая пе­ре­мен­ная
 
     return {
         // Ме­тод чте­ния свой­ст­ва воз­вра­ща­ет и уве­ли­чи­ва­ет пе­ре­мен­ную счет­чи­ка.
@@ -11,9 +11,7 @@ function counter(n) { // Ар­гу­мент n функ­ции - скры­т�
         },
 
         reset: function () { n = x },
-        show: function() {
-            console.log(x, n)
-        }
+        show: function() { console.log(x, n) }
     };
 }
 

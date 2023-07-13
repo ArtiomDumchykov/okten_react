@@ -3,7 +3,7 @@ import { Button } from '../../Button/Button'
 import { Context } from '../../../App'
 import { counter } from '../../../utils'
 
-const c = counter(5);
+const c = counter(5); // стартовое значение счетчика
 
 export  function SubChild_1_2() {
   const {handlePushArr2} = useContext(Context)
