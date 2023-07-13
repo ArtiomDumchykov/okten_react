@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import './Posts.scss'
 
-import { useUserPosts } from '../../hooks'
-
 import { Post } from '../Post/Post';
 
-export  function Posts({userId, userName}) {
-    const {userPosts} = useUserPosts(userId);
+import { UserPostsContext } from '../../App';
 
+export  function Posts() {
+
+  const {userPosts, userNameId} = useContext(UserPostsContext)
   return (
     <div className='user-posts__container _container'>
-        <h2 className='user-name__title'>User Name: {userName}</h2>
+        <h2 className='user-name__title'>User Name: {userNameId}</h2>
         <ul className='user__posts-list'>
             {
-                !!userPosts?.length && [...userPosts].map(item => <Post post={item}/>)
+              !!userPosts?.length && [...userPosts].map(item => <Post post={item} key={item.id + "_" + item.userId}/>)
             }
         </ul>
     </div>

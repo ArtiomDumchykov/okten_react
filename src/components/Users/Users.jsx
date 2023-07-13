@@ -1,24 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import styles from './Users.module.scss';
 
 import { User } from '../User/User';
 
-export  function Users({users, handleGetUserPosts, ...rest}) {
+import { UsersContext } from '../../App';
 
-    
+export function Users() {
 
-  return (
-    <>
-        <div className={styles.users__container + " _container"}>
-            <ul className={styles.users__list}>
-                {
-                    !!users?.length && [...users].map(item => {
-                        return <User user={item} key={item.id} handleGetUserPosts={handleGetUserPosts} {...rest}/>
-                    })
-                }
-            </ul>
-        </div>
-    </>
-  )
+    const { users } = useContext(UsersContext)
+    return (
+        <>
+            <div className={styles.users__container + " _container"}>
+                <ul className={styles.users__list}>
+                    {
+                        !!users?.length && [...users].map(item => <User user={item} key={item.id} /> )
+                    }
+                </ul>
+            </div>
+        </>
+    )
 }

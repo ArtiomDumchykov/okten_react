@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from '../User'
 
 
 const companyList = {
@@ -11,7 +12,8 @@ const companyItem = {
 
 }
 
-export function UserCompany({ company }) {
+export function UserCompany() {
+    const {company} = useContext(UserContext)
     const { name, catchPhrase, bs } = company
     return (
         <div>

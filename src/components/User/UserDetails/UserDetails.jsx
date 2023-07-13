@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './UserDetails.module.scss'
+import { UserContext } from '../User'
 
-export function UserDetails({ userDetails }) {
-    const { id, name, username, phone, email } = userDetails
+export function UserDetails() {
+    const {restUser: userDetails} = useContext(UserContext);
+    const { id, name, username, phone, email } = userDetails;
+
     return (
         <div className={styles["item__description-text"]}>
             <p className={styles["text-item"]}>ID: {id}</p>

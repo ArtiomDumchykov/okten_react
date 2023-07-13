@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserContext } from '../User'
 
 
 const addressList = {
@@ -11,7 +12,8 @@ const addressItem = {
 
 }
 
-export function UserAddress({ address }) {
+export function UserAddress() {
+    const {address} = useContext(UserContext)
     const { street, suite, city, zipcode } = address
     return (
         <div>

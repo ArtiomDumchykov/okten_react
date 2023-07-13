@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+
 import './Post.scss'
 
 export  function Post({post}) {
-    const {id: postId, userId, title, body: text} = post
+  const {id: postId, userId, title, body: text} = post
   return (
     <li className="post__item">
             <div className="post__text">

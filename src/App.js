@@ -1,35 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import './App.css';
 
-import {useUsers} from './hooks';
+import { useUserPosts, useUsers } from './hooks';
 
 import { Posts, Users } from './components';
 
-
+export const UsersContext = createContext(null)
+export const UserPostsContext = createContext(null)
 
 function App() {
-  console.log("RENDER");
   const { users } = useUsers();
-  
+
   const [userId, setUserId] = useState(null)
   const [userNameId, setUserNameId] = useState(null)
 
-  const handleGetUserPosts = ({userId, userName}) => {
-    // alert(userId + userName)
+  const { userPosts } = useUserPosts(userId);
+
+  const handleGetUserPosts = ({ userId, userName }) => {
     setUserId(userId);
     setUserNameId(userName)
   }
 
   return (
     <>
-      <div className='wrapper'>
-        <Users users={users} handleGetUserPosts={handleGetUserPosts}/>
-        
-        {!!userId && <Posts userId={userId} userName={userNameId}/>}
-      </div>
+      <UsersContext.Provider value={{ users, handleGetUserPosts }}>
+        <div className='wrapper'>
+          <Users />
+          {
+            !!userId && <UserPostsContext.Provider value={{ userPosts, userNameId }}>
+              <Posts />
+            </UserPostsContext.Provider>
+          }
+        </div>
+      </UsersContext.Provider>
     </>
   );
 }
-
 
 export default App;
