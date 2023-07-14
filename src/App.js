@@ -1,7 +1,7 @@
 import React, { useState, createContext } from 'react';
 import './App.css';
 
-import { useGetUsersPosts, useGetUsers, useFilter } from './hooks';
+import { useGetUsersPosts, useGetUsers } from './hooks';
 
 import { Posts, Users } from './components';
 
@@ -11,8 +11,8 @@ export const UserPostsContext = createContext(null)
 function App() {
   const { users } = useGetUsers();
   const { usersPosts } = useGetUsersPosts()
-  const {posts, setPosts} = useFilter()
 
+  const [posts, setPosts] = useState({ userName: null, userId: null, userPosts: [] })
 
   const handleFilterUserPosts = ({ userId, userName }) => {
     const filterData = [...usersPosts].filter(item => item.userId === userId)
@@ -31,7 +31,7 @@ function App() {
         <div className='wrapper'>
           <Users />
           {
-            !!posts?.userPosts?.length && <UserPostsContext.Provider value={{ posts }}>
+            <UserPostsContext.Provider value={{ posts }}>
               <Posts />
             </UserPostsContext.Provider>
           }
