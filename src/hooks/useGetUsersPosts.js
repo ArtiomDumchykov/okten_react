@@ -5,7 +5,7 @@ import { PostsRequestService } from "../services";
 const postsRequestService = new PostsRequestService()
 
 export const useGetUsersPosts = () => {
-    const [posts, setPosts] = useState({ userName: null, userId: null, userPosts: null })
+    
 
     const [usersPosts, setUsersPosts] = useState([]);
     const [error, setError] = useState("");
@@ -23,7 +23,6 @@ export const useGetUsersPosts = () => {
     }, [])
 
     return {
-        posts, setPosts,
         usersPosts, setUsersPosts,
         error, setError
     }
