@@ -25,6 +25,7 @@ function App() {
   }
 
   console.log("Render");
+  
   return (
     <>
       <UsersContext.Provider value={{ users, handleFilterUserPosts }}>
