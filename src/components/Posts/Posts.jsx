@@ -1,16 +1,17 @@
-import React, { useContext } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 import './Posts.scss'
 
 import { Post } from '../Post/Post';
 
-import { UserPostsContext } from '../../App';
+import { usePosts } from '../../hooks';
+
 
 export function Posts() {
-  const { posts: { userName, userPosts } } = useContext(UserPostsContext)
   console.log("Render Users Posts");
-
-  if (!userPosts.length) {
+  const {posts} = usePosts()
+  console.log("POSTS", posts);
+  if (!posts?.userPosts?.length) {
     return (
       <div style={{
         padding: "20px 0"
@@ -22,10 +23,10 @@ export function Posts() {
 
   return (
     <div className='user-posts__container _container'>
-      <h2 className='user-name__title'>User Name: {userName}</h2>
+      <h2 className='user-name__title'>User Name: {posts?.userName}</h2>
       <ul className='user__posts-list'>
         {
-          !!userPosts?.length && [...userPosts].map(item => <Post post={item} key={item.id + "_" + item.userId} />)
+          !!posts?.userPosts?.length && [...posts?.userPosts].map(item => <Post post={item} key={item.id + "_" + item.userId} />)
         }
       </ul>
     </div>

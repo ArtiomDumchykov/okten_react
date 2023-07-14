@@ -2,16 +2,36 @@ import React, { useContext, createContext } from 'react';
 
 import styles from './User.module.scss';
 
-import { UserDetails, UserAddress, UserCompany } from './';
 import { Button } from '../';
-
-import { UsersContext } from '../../App';
+import { UserDetails, UserAddress, UserCompany } from './';
+import { AppContext } from '../../App';
+import { usePosts } from '../../hooks';
 
 export const UserContext = createContext({})
 
 export function User({ user, ...rest }) {
     const { address, company, ...restUser } = user;
-    const { handleFilterUserPosts } = useContext(UsersContext)
+    const {usersPosts} = useContext(AppContext)
+    const {setPosts} = usePosts()
+
+     const handleShowFilterPosts = ({ userId, userName }) => {
+      const filterData = [...usersPosts].filter(item => item.userId === userId)
+      console.log("DATA filter", filterData);
+      console.log(setPosts);
+      setPosts(filterData)
+    //   setPosts(prev => {
+    //     console.log("PREV", prev);
+    //     return {...prev, filterData}
+    //   })
+    //   setPosts(prev => ({
+    //     ...prev,
+    //     userName,
+    //     userId,
+    //     userPosts: filterData
+    //   }))
+    }
+
+
     return (
         <UserContext.Provider value={{address, company, restUser}}>
 
@@ -25,7 +45,7 @@ export function User({ user, ...rest }) {
                     type={"button"}
                     classNameWrap={styles.btn__wrap}
                     classNameBtn={styles.btn}
-                    onClick={() => handleFilterUserPosts({ userId: restUser.id, userName: restUser.name })}
+                    onClick={() => handleShowFilterPosts({userId: restUser.id, userName: restUser.name})}
                     {...rest}
                 >
                     get Posts

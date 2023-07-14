@@ -1,14 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import styles from './Users.module.scss';
 
 import { User } from '../User/User';
 
-import { UsersContext } from '../../App';
+import { useGetUsers } from '../../hooks';
 
 export function Users() {
 
-    const { users } = useContext(UsersContext)
+      const { users} = useGetUsers();
+
+
     return (
         <>
             <div className={styles.users__container + " _container"}>
