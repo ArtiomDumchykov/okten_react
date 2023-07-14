@@ -4,32 +4,30 @@ import styles from './User.module.scss';
 
 import { Button } from '../';
 import { UserDetails, UserAddress, UserCompany } from './';
-import { AppContext } from '../../App';
-import { usePosts } from '../../hooks';
+
+
 
 export const UserContext = createContext({})
 
 export function User({ user, ...rest }) {
     const { address, company, ...restUser } = user;
-    const {usersPosts} = useContext(AppContext)
-    const {setPosts} = usePosts()
 
-     const handleShowFilterPosts = ({ userId, userName }) => {
-      const filterData = [...usersPosts].filter(item => item.userId === userId)
-      console.log("DATA filter", filterData);
-      console.log(setPosts);
-      setPosts(filterData)
-    //   setPosts(prev => {
-    //     console.log("PREV", prev);
-    //     return {...prev, filterData}
-    //   })
-    //   setPosts(prev => ({
-    //     ...prev,
-    //     userName,
-    //     userId,
-    //     userPosts: filterData
-    //   }))
-    }
+
+    //  const handleShowFilterPosts = ({ userId, userName }) => {
+    // //   const filterData = [...usersPosts].filter(item => item.userId === userId)
+    // //   console.log("DATA filter", filterData);
+    // //   setPosts(filterData)
+    // //   setPosts(prev => {
+    // //     console.log("PREV", prev);
+    // //     return {...prev, filterData}
+    // //   })
+    // //   setPosts(prev => ({
+    // //     ...prev,
+    // //     userName,
+    // //     userId,
+    // //     userPosts: filterData
+    // //   }))
+    // }
 
 
     return (
@@ -45,7 +43,7 @@ export function User({ user, ...rest }) {
                     type={"button"}
                     classNameWrap={styles.btn__wrap}
                     classNameBtn={styles.btn}
-                    onClick={() => handleShowFilterPosts({userId: restUser.id, userName: restUser.name})}
+                    // onClick={() => handleShowFilterPosts({userId: restUser.id, userName: restUser.name})}
                     {...rest}
                 >
                     get Posts

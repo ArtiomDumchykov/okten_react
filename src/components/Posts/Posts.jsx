@@ -1,16 +1,18 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import './Posts.scss'
 
 import { Post } from '../Post/Post';
 
-import { usePosts } from '../../hooks';
+import { useGetUsersPosts } from '../../hooks';
 
 
 export function Posts() {
+
+  // const { usersPosts } = useGetUsersPosts();
+  const [posts, setPosts] = useState({ userName: null, userId: null, userPosts: [] })
+
   console.log("Render Users Posts");
-  const {posts} = usePosts()
-  console.log("POSTS", posts);
   if (!posts?.userPosts?.length) {
     return (
       <div style={{

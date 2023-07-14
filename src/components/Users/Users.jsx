@@ -8,8 +8,7 @@ import { useGetUsers } from '../../hooks';
 
 export function Users() {
 
-      const { users} = useGetUsers();
-
+    const { users} = useGetUsers();
 
     return (
         <>
