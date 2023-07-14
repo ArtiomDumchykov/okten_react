@@ -1,7 +1,7 @@
 import React, { useState, createContext } from 'react';
 import './App.css';
 
-import { useUserPosts, useUsers } from './hooks';
+import { useGetUsersPosts, useGetUsers } from './hooks';
 
 import { Posts, Users } from './components';
 
@@ -9,25 +9,29 @@ export const UsersContext = createContext(null)
 export const UserPostsContext = createContext(null)
 
 function App() {
-  const { users } = useUsers();
+  const { users } = useGetUsers();
+  const { usersPosts } = useGetUsersPosts()
 
-  const [userId, setUserId] = useState(null)
-  const [userNameId, setUserNameId] = useState(null)
+  const [posts, setPosts] = useState({ userName: null, userId: null, userPosts: [] })
 
-  const { userPosts } = useUserPosts(userId);
-
-  const handleGetUserPosts = ({ userId, userName }) => {
-    setUserId(userId);
-    setUserNameId(userName)
+  const handleFilterUserPosts = ({ userId, userName }) => {
+    const filterData = [...usersPosts].filter(item => item.userId === userId)
+    setPosts(prev => ({
+      ...prev,
+      userName,
+      userId,
+      userPosts: filterData
+    }))
   }
 
+  console.log("Render");
   return (
     <>
-      <UsersContext.Provider value={{ users, handleGetUserPosts }}>
+      <UsersContext.Provider value={{ users, handleFilterUserPosts }}>
         <div className='wrapper'>
           <Users />
           {
-            !!userId && <UserPostsContext.Provider value={{ userPosts, userNameId }}>
+            !!posts?.userPosts?.length && <UserPostsContext.Provider value={{ posts }}>
               <Posts />
             </UserPostsContext.Provider>
           }

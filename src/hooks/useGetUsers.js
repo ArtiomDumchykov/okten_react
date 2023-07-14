@@ -3,7 +3,7 @@ import { UsersRequestService } from "../services";
 
 const usersRequestService = new UsersRequestService()
 
-export const useUsers = () => {
+export const useGetUsers = () => {
     const [users, setUsers] = useState([]);
     const [error, setError] = useState("")
 
@@ -11,7 +11,6 @@ export const useUsers = () => {
         (async() => {
             try {
                 const {data} = await usersRequestService.getUsers();
-                console.log("DATA", data);
                 setUsers(data)
             } catch (error) {
                 setError(error.message)
