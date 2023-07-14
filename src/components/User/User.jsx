@@ -4,31 +4,16 @@ import styles from './User.module.scss';
 
 import { Button } from '../';
 import { UserDetails, UserAddress, UserCompany } from './';
-
-
+import { AppContext } from '../../App';
 
 export const UserContext = createContext({})
 
 export function User({ user, ...rest }) {
     const { address, company, ...restUser } = user;
 
+    const {handleShowFilterPosts} = useContext(AppContext)
 
-    //  const handleShowFilterPosts = ({ userId, userName }) => {
-    // //   const filterData = [...usersPosts].filter(item => item.userId === userId)
-    // //   console.log("DATA filter", filterData);
-    // //   setPosts(filterData)
-    // //   setPosts(prev => {
-    // //     console.log("PREV", prev);
-    // //     return {...prev, filterData}
-    // //   })
-    // //   setPosts(prev => ({
-    // //     ...prev,
-    // //     userName,
-    // //     userId,
-    // //     userPosts: filterData
-    // //   }))
-    // }
-
+   
 
     return (
         <UserContext.Provider value={{address, company, restUser}}>
@@ -43,7 +28,7 @@ export function User({ user, ...rest }) {
                     type={"button"}
                     classNameWrap={styles.btn__wrap}
                     classNameBtn={styles.btn}
-                    // onClick={() => handleShowFilterPosts({userId: restUser.id, userName: restUser.name})}
+                    onClick={() => handleShowFilterPosts({userId: restUser.id, userName: restUser.name})}
                     {...rest}
                 >
                     get Posts

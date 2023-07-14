@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './Posts.scss'
 
@@ -7,11 +7,23 @@ import { Post } from '../Post/Post';
 import { useGetUsersPosts } from '../../hooks';
 
 
+export const handleShowFilterPosts = ({ userId, userName }) => {
+  console.log(userId, userName);
+//   const filterData = [...usersPosts].filter(item => item.userId === userId)
+//   console.log("DATA filter", filterData);
+//   setPosts(prev => ({
+//     ...prev,
+//     userName,
+//     userId,
+//     userPosts: filterData
+//   }))
+}
+
+
 export function Posts() {
 
-  // const { usersPosts } = useGetUsersPosts();
-  const [posts, setPosts] = useState({ userName: null, userId: null, userPosts: [] })
-
+  const {posts, setPosts, usersPosts } = useGetUsersPosts();
+  // console.log("POSTS", posts);
   console.log("Render Users Posts");
   if (!posts?.userPosts?.length) {
     return (
