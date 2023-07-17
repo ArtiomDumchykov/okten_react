@@ -3,7 +3,7 @@ import { RequestService } from "./request.service"
 
 export class CarsService extends RequestService {
 
-    static urls = {
+    static endpoints = {
         cars: "/cars",
         carsId(id) {return `/cars/${id}`}
     }
@@ -17,7 +17,7 @@ export class CarsService extends RequestService {
 
     getAll() {
         const config = {
-            url: CarsService.urls.cars,
+            url: CarsService.endpoints.cars,
             method: "get",
             headers: {'content-type': 'application/json'},
         }
@@ -27,7 +27,7 @@ export class CarsService extends RequestService {
 
     getCarsId(id) {
         const config = {
-            url: CarsService.urls.carsId(id),
+            url: CarsService.endpoints.carsId(id),
             method: "get",
             headers: {'content-type': 'application/json'},
         }
@@ -36,7 +36,7 @@ export class CarsService extends RequestService {
 
     createCar(data) {
         const config = {
-            url: CarsService.urls.cars,
+            url: CarsService.endpoints.cars,
             method: "post",
             headers: {'content-type': 'application/json'},
             data
@@ -46,7 +46,7 @@ export class CarsService extends RequestService {
 
     deleteCar(id) {
         const config = {
-            url: CarsService.urls.carsId(id),
+            url: CarsService.endpoints.carsId(id),
             method: "delete",
             headers: {'content-type': 'application/json'},
         }
@@ -54,7 +54,7 @@ export class CarsService extends RequestService {
     }
     updateCar(id, data) {
         const config = {
-            url: CarsService.urls.carsId(id),
+            url: CarsService.endpoints.carsId(id),
             method: "put",
             headers: {'content-type': 'application/json'},
             data
