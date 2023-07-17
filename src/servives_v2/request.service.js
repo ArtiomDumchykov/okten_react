@@ -3,7 +3,7 @@ import axios from 'axios';
 import { BASE_URLS } from '../constans/urls';
 
 const baseURL = BASE_URLS.cars_url;
-export const axiosService = axios.create({baseURL})
+const axiosService = axios.create({baseURL})
 
 export class RequestService {
     constructor() {
