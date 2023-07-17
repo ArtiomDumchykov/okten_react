@@ -3,8 +3,6 @@ import axios from 'axios';
 import { BASE_URLS } from '../constans/urls';
 
 const baseURL = BASE_URLS.cars_url;
-const axiosService = axios.create({baseURL})
-
 export class RequestService {
     constructor() {
         if (new.target === RequestService) {
@@ -15,7 +13,9 @@ export class RequestService {
         //     throw new Error('RequestServer  cannot be directly instantiated')
         // }
     }
+    static instanceAxios = axios.create({baseURL})
+
     static axiosRequest(config) {
-        return axiosService(config)
+        return RequestService.instanceAxios(config)
     }
 }
