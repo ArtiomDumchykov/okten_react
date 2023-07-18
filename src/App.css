@@ -63,7 +63,7 @@ body {
 
   overflow: hidden;
 
-  background-image: url('./assets/bg-light.png');
+  /* background-image: url('./assets/bg-light.png'); */
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;

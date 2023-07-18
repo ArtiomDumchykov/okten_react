@@ -1,0 +1,70 @@
+.wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.form-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.comments-form {
+    width: 430px;
+}
+
+.comments-form__container {
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.forms-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px
+}
+
+.field-wrap {
+
+}
+
+.label-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.label-text {
+
+}
+.field {
+    padding: 7px 10px;
+}
+
+textarea {
+    resize: vertical;
+    height: 75px;
+}
+
+.btn-wrap {
+    align-self: center;
+}
+.submit-btn {
+    padding: 7px 15px;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+
+// ERROR
+
+.error-message {
+    display: none;
+}
+
+// ERROR
