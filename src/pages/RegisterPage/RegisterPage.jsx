@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import "./RegisterPage.scss"
 
@@ -7,51 +7,62 @@ import { UsersService } from '../../servives_v2/UsersService';
 
 const usersService = new UsersService()
 
-const initialForm = {
-  name: "",
-  username: "",
-  email: "",
-  phone: "",
-  password: "",
-  confirmpassword: "",
+function valuesForm({nameRef, userNameRef, emailRef, phoneRef, passwordRef, confirmPasswordRef}) {
+  return {
+    name: getCurrentValue(nameRef),
+    username: getCurrentValue(userNameRef),
+    email: getCurrentValue(emailRef),
+    phone: getCurrentValue(phoneRef),
+    password: getCurrentValue(passwordRef),
+    confirmpassword: getCurrentValue(confirmPasswordRef),
+  }
+}
+
+function getCurrentValue(ref) {
+  return ref.current.value
 }
 
 export  function RegisterPage() {
 
-  const [formValues, setFormValues] = useState(initialForm)
+  const nameRef = useRef('');
+  const userNameRef = useRef('');
+  const emailRef = useRef('');
+  const phoneRef = useRef('');
+  const passwordRef = useRef('');
+  const confirmPasswordRef = useRef('');
+
 
   const handleSubmit = async(e) => {
     try {
       e.preventDefault();
-  
-      const response = await usersService.createUser(formValues)
+      const data = valuesForm({nameRef, userNameRef, emailRef, phoneRef, passwordRef, confirmPasswordRef})
+      const response = await usersService.createUser(data)
       console.log(response);
 
       if (response.status === 201) {
-        handleResetForm()
+        handleResetFormRef(nameRef, userNameRef, emailRef, phoneRef, passwordRef, confirmPasswordRef)
       }
     } catch (err) {
       console.log(err);
     }
   }
 
-  const handleChangeForm = (e, key) => {
-    e.preventDefault();
-    const target = e.target
-    setFormValues(prev => ({...prev, [key]: target.value}))
-    
-  }
-
-  const handleResetForm = () => {
-    setFormValues(initialForm)
+  const handleResetFormRef = (...refs) => {
+    refs?.map(item => item.current.value = "")
   }
 
   return (
     <div className="wrapper">
         <RegisterForm 
-          formValues={formValues} 
-          handleChangeForm={handleChangeForm}
-          handleSubmit={handleSubmit} 
+          refs={{
+            nameRef,
+            userNameRef,
+            emailRef,
+            phoneRef,
+            passwordRef,
+            confirmPasswordRef
+          }}
+          handleSubmit={handleSubmit}
         />
     </div>
   )

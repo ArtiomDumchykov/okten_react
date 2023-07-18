@@ -1,7 +1,7 @@
 import React from 'react'
 
-export function RegisterForm({ formValues, handleChangeForm, handleSubmit, ...rest }) {
-  const { name, username, email, phone, password, confirmpassword } = formValues
+export function RegisterForm({refs, handleSubmit, ...rest}) {
+  const {nameRef,userNameRef,emailRef,phoneRef,passwordRef,confirmPasswordRef} = refs
   return (
     <div className='form-wrap'>
       <form className="login-gorm" onSubmit={handleSubmit}>
@@ -15,8 +15,7 @@ export function RegisterForm({ formValues, handleChangeForm, handleSubmit, ...re
                   name='name'
                   className='field'
                   placeholder='name'
-                  value={name}
-                  onChange={(e) => handleChangeForm(e, "name")} 
+                  ref={nameRef}
                 />
                 <span className="error-message">error</span>
               </label>
@@ -29,8 +28,7 @@ export function RegisterForm({ formValues, handleChangeForm, handleSubmit, ...re
                   name='username'
                   className='field'
                   placeholder='username'
-                  value={username}
-                  onChange={(e) => handleChangeForm(e, "username")} 
+                  ref={userNameRef}
                 />
                 <span className="error-message">error</span>
               </label>
@@ -43,8 +41,7 @@ export function RegisterForm({ formValues, handleChangeForm, handleSubmit, ...re
                   name='user-email'
                   className='field'
                   placeholder='email'
-                  value={email}
-                  onChange={(e) => handleChangeForm(e, "email")} 
+                  ref={emailRef}
                 />
                 <span className="error-message">error</span>
               </label>
@@ -57,8 +54,7 @@ export function RegisterForm({ formValues, handleChangeForm, handleSubmit, ...re
                   name='user-tel'
                   className='field'
                   placeholder='phone'
-                  value={phone}
-                  onChange={(e) => handleChangeForm(e, "phone")} 
+                  ref={phoneRef}
                 />
                 <span className="error-message">error</span>
               </label>
@@ -71,8 +67,7 @@ export function RegisterForm({ formValues, handleChangeForm, handleSubmit, ...re
                   name='user-password'
                   className='field'
                   placeholder='password'
-                  value={password}
-                  onChange={(e) => handleChangeForm(e, "password")} 
+                  ref={passwordRef}
                 />
                 <span className="error-message">error</span>
               </label>
@@ -85,8 +80,7 @@ export function RegisterForm({ formValues, handleChangeForm, handleSubmit, ...re
                   name='user-confirmpassword'
                   className='field'
                   placeholder='confirm password'
-                  value={confirmpassword}
-                  onChange={(e) => handleChangeForm(e, "confirmpassword")} 
+                  ref={confirmPasswordRef}
                 />
                 <span className="error-message">error</span>
               </label>
