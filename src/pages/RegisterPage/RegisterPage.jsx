@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 
 import "./RegisterPage.scss"
 
@@ -31,13 +31,12 @@ export  function RegisterPage() {
   const passwordRef = useRef('');
   const confirmPasswordRef = useRef('');
 
-
   const handleSubmit = async(e) => {
     try {
       e.preventDefault();
+      
       const data = valuesForm({nameRef, userNameRef, emailRef, phoneRef, passwordRef, confirmPasswordRef})
       const response = await usersService.createUser(data)
-      console.log(response);
 
       if (response.status === 201) {
         handleResetFormRef(nameRef, userNameRef, emailRef, phoneRef, passwordRef, confirmPasswordRef)
