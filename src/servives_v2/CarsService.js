@@ -19,7 +19,6 @@ export class CarsService extends RequestService {
         CarsService.instance = this
     }
 
-
    axiosInstance() {
     return axios.create({baseURL})
    }

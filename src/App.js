@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-// import { CarsService } from './servives_v2/CarsService';
 
 // const carsService = new CarsService()
 // async function f () {
@@ -20,7 +19,7 @@ import './App.css';
 
 
 function App() {
-  
+
   return (
     <>
       hello
