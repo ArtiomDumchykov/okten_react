@@ -41,11 +41,11 @@ export function CommentsPage() {
             const response = await commentsService.createComments(data)
       
             if (response.status === 201) {
-              handleResetFormRef(postIdRef, emailRef, titleRef, textRef)
+                handleResetFormRef(postIdRef, emailRef, titleRef, textRef)
             }
         } catch (err) {
             console.log(err);
-        }
+        } 
     }
 
     function getCurrentValue(ref) {
