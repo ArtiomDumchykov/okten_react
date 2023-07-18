@@ -2,7 +2,9 @@ import axios from 'axios';
 
 import { BASE_URLS } from '../constans/urls';
 
-const baseURL = BASE_URLS.cars_url;
+const baseURL = BASE_URLS.jsonplaceholder_url;
+// const baseURL = BASE_URLS.spacex_url;
+// const baseURL = BASE_URLS.cars_url;
 export class RequestService {
     constructor() {
         if (new.target === RequestService) {

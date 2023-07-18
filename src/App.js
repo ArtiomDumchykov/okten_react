@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.css';
-// import { CarsService } from './servives_v2/CarsService';
+import { RegisterPage } from './pages/RegisterPage/RegisterPage';
 
-// const carsService = new CarsService()
+
+// const usersService = new UsersService()
 // async function f () {
   // const response = await carsService.getAll()
   // console.log(response);
@@ -20,13 +21,9 @@ import './App.css';
 
 
 function App() {
-// f()
-
-
   return (
     <>
-      hello
-
+    <RegisterPage />
     </>
   );
 }
