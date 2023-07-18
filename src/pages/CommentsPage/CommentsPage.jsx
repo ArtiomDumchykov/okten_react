@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 
 import './CommentsPage.scss';
 
@@ -6,18 +6,14 @@ import { CommentsForm } from '../../components';
 
 import { CommentsService } from '../../servives_v2'
 
-
 const commentsService = new CommentsService(); 
 
 export function CommentsPage() {
-
-
 
     const postIdRef = useRef('');
     const emailRef = useRef('');
     const titleRef = useRef('');
     const textRef = useRef('');
-
 
     const valuesForm = () => {
         return {
