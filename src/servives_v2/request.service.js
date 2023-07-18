@@ -15,7 +15,7 @@ export class RequestService {
         //     throw new Error('RequestServer  cannot be directly instantiated')
         // }
     }
-    static instanceAxios = axios.create({baseURL})
+    static instanceAxios = axios.create({baseURL});
 
     static axiosRequest(config) {
         return RequestService.instanceAxios(config)

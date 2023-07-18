@@ -1,5 +1,4 @@
-import { RequestService } from "./request.service"
-
+import { RequestService } from "./request.service";
 export class UsersService extends RequestService {
 
     static endpoints = {
@@ -11,7 +10,7 @@ export class UsersService extends RequestService {
         if (typeof UsersService.instance === "object") {
             return UsersService.instance
         }
-        UsersService.instance = this
+        UsersService.instance = this;
     }
 
     getAll() {
