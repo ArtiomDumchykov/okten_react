@@ -1,42 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-import { CarsService } from '../../../servives_v2';
+import { useCars } from '../../../hooks';
 import { Car } from '../Car/Car';
 
-const carsService = new CarsService()
+export function Cars({ addCar, setAddCar, setCarUpdate }) {
 
-export const useCars = () => {
-    const [cars, setCars] = useState([]);
+    const { cars } = useCars(addCar)
 
-    useEffect(() => {
-        (async() => {
-            try {
-                const response = await carsService.getAll();
-
-                setCars(response.data)
-
-            } catch (error) {
-                console.log(error);
-            }
-        })()
-    }, [])
-
-    return {
-        cars, setCars
-    }
-}
-
-export  function Cars() {
-  
-    const {cars, setCars} = useCars()
-
-  return (
-    <div>
-        <ul className="cars__list">
-            {
-                !!cars?.length && [...cars].map(item => <Car car={item} key={item.id}/>)
-            }
-        </ul>
-    </div>
-  )
+    return (
+        <div>
+            <ul
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "10px"
+                }}
+                className="cars__list"
+            >
+                {
+                    !!cars?.length && [...cars].map(item => 
+                        <Car
+                            setAddCar={setAddCar}
+                            setCarUpdate={setCarUpdate}
+                            car={item}
+                            key={item.id}
+                        />
+                    )
+                }
+            </ul>
+        </div>
+    )
 }

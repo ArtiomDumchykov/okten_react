@@ -34,7 +34,7 @@ export class CarsService extends RequestService {
             method: "get",
             headers: {'content-type': 'application/json'},
         }
-        return this.axiosRequest(config)
+        return this.axiosRequest()(config)
     }
 
     getCarsId(id) {
@@ -43,7 +43,7 @@ export class CarsService extends RequestService {
             method: "get",
             headers: {'content-type': 'application/json'},
         }
-        return this.axiosRequest(config)
+        return this.axiosRequest()(config)
     }
 
     createCar(data) {
@@ -53,7 +53,7 @@ export class CarsService extends RequestService {
             headers: {'content-type': 'application/json'},
             data
         }
-        return this.axiosRequest(config)
+        return this.axiosRequest()(config)
     }
 
     deleteCar(id) {
@@ -62,7 +62,7 @@ export class CarsService extends RequestService {
             method: "delete",
             headers: {'content-type': 'application/json'},
         }
-        return this.axiosRequest(config)
+        return this.axiosRequest()(config)
     }
     
     updateCar(id, data) {
@@ -72,6 +72,6 @@ export class CarsService extends RequestService {
             headers: {'content-type': 'application/json'},
             data
         }
-        return this.axiosRequest(config)
+        return this.axiosRequest()(config)
     }
 }
