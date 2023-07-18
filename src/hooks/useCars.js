@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { CarsService } from "../servives_v2";
+import { CarsService } from '../services'
 
 const carsService = new CarsService()
 

@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import {joiResolver} from '@hookform/resolvers/joi';
 
 import { carValidator } from '../../../validators';
-import { CarsService } from '../../../servives_v2';
+import { CarsService } from '../../../services';
 
 const carsService = new CarsService()
 
