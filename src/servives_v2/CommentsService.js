@@ -1,5 +1,4 @@
 import { RequestService } from "./request.service"
-
 export class CommentsService extends RequestService {
 
     static endpoints = {
