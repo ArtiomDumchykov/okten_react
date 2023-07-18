@@ -1,5 +1,10 @@
+import axios from "axios";
+
 import { RequestService } from "./request.service"
 
+import { BASE_URLS } from "../constans/urls";
+
+const baseURL = BASE_URLS.cars_url;
 export class CarsService extends RequestService {
 
     static endpoints = {
@@ -14,13 +19,23 @@ export class CarsService extends RequestService {
         CarsService.instance = this
     }
 
+
+   axiosInstance() {
+    return axios.create({baseURL})
+   }
+
+
+   axiosRequest(config) {
+        return this.axiosInstance(config)
+   }
+
     getAll() {
         const config = {
             url: CarsService.endpoints.cars,
             method: "get",
             headers: {'content-type': 'application/json'},
         }
-        return RequestService.axiosRequest(config)
+        return this.axiosRequest(config)
     }
 
     getCarsId(id) {
@@ -29,7 +44,7 @@ export class CarsService extends RequestService {
             method: "get",
             headers: {'content-type': 'application/json'},
         }
-        return RequestService.axiosRequest(config)
+        return this.axiosRequest(config)
     }
 
     createCar(data) {
@@ -39,7 +54,7 @@ export class CarsService extends RequestService {
             headers: {'content-type': 'application/json'},
             data
         }
-        return RequestService.axiosRequest(config)
+        return this.axiosRequest(config)
     }
 
     deleteCar(id) {
@@ -48,7 +63,7 @@ export class CarsService extends RequestService {
             method: "delete",
             headers: {'content-type': 'application/json'},
         }
-        return RequestService.axiosRequest(config)
+        return this.axiosRequest(config)
     }
     
     updateCar(id, data) {
@@ -58,6 +73,6 @@ export class CarsService extends RequestService {
             headers: {'content-type': 'application/json'},
             data
         }
-        return RequestService.axiosRequest(config)
+        return this.axiosRequest(config)
     }
 }
