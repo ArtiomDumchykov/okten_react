@@ -2,6 +2,7 @@ const MAIN = '/';
 const TODOS = 'todos';
 const ALBUMS = 'albums';
 const COMMENTS = 'comments';
+const POSTS = 'posts';
 const POST_ID = 'posts/:postId';
 
 export const ROUTES = {
@@ -9,5 +10,6 @@ export const ROUTES = {
     TODOS,
     ALBUMS,
     COMMENTS,
+    POSTS,
     POST_ID
 }

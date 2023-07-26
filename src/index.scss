@@ -1,18 +1,4 @@
-// vars
-  $light-color: #f4f4f4;
-  $dark-color: #2e2e2e;
-  $main-color: #111321;
-  $orange-color: #ffa500;
-
-  $light-theme-color: #f4f4f4;
-  $primary-text-color: #111321;
-  $dark-theme-color: #2e2e2e;
-
-  $duration: 301ms;
-
-  $transition: all $duration ease;
-// vars
-
+@import './styles/utils/var.scss';
 
 * {
   padding: 0;
@@ -40,9 +26,6 @@ ol
 li {
   list-style: none;
 }
-
-
-
 
 img {
 vertical-align: top;
@@ -72,12 +55,10 @@ body {
   height: 100%;
   transition: $transition;
 
-
-
-  &.dark {
-      color: $light-color;
-      background-color: $dark-theme-color;
-  }
+  // &.dark {
+  //     color: $light-color;
+  //     background-color: $dark-theme-color;
+  // }
 }
 
 body.dark {
@@ -95,10 +76,10 @@ body.dark {
   position: relative;
   min-height: 100%;
   overflow: hidden;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
  
   opacity: 1;
   visibility: visible;
@@ -121,7 +102,7 @@ body.dark {
 }
 
 ._container {
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 15px;
   box-sizing: content-box;
