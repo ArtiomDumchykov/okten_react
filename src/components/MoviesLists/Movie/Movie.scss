@@ -1,0 +1,59 @@
+@import '../../../styles/utils/var.scss';
+
+.movies-lists__item {
+    position: relative;
+    overflow: hidden;
+    width: 230px;
+
+
+    &:hover .movies-lists-item__info-short{
+        transform: translateY(0%);
+        transition: $transition;
+    }
+}
+
+.movies-lists-item__img-wrap {
+    height: 350px;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  
+}
+
+.movies-lists-item__info-short {
+    position: absolute;
+    width: 100%;
+    padding: 7px 10px;
+
+    bottom: 0;
+
+    transform: translateY(100%);
+
+    background-color: red;
+
+    transition: $transition;
+}
+
+
+// badges
+
+.badges {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    z-index: 10;
+
+    
+    
+    & > .new__badges-text {
+        padding: 5px 7px;
+        border-radius: 2px;
+        background-color: green;
+        color: white;
+    }
+}
+
+
+
+// badges

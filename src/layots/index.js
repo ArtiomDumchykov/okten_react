@@ -1,1 +1,1 @@
-export * from './MainLayuot/MainLayuot.jsx'
+export * from './MainLayout/MainLayout.jsx'

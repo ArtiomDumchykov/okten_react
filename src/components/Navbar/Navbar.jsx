@@ -3,12 +3,6 @@ import { NavLink } from 'react-router-dom';
 
 import './Navbar.scss';
 
-const navbarLinks = {
-    todos: "todos",
-    albums: "albums",
-    comments: "comments",
-}
-
 export function Navbar() {
     return (
         <nav className="header__nav">
@@ -16,30 +10,13 @@ export function Navbar() {
                 <li className='header_nav__item'>
                     <NavLink
                         className="item-nav__link"
-                        to={navbarLinks.todos}
+                        to={"/"}
                     >
-                        todos
+                        Home
                         <span className='span'></span>
                     </NavLink>
                 </li>
-                <li className='header_nav__item'>
-                    <NavLink
-                        className="item-nav__link"
-                        to={navbarLinks.albums}
-                    >
-                        albums
-                        <span className='span'></span>
-                    </NavLink>
-                </li>
-                <li className='header_nav__item'>
-                    <NavLink
-                        className="item-nav__link"
-                        to={navbarLinks.comments}
-                    >
-                        comments
-                        <span className='span'></span>
-                    </NavLink>
-                </li>
+             
             </ul>
         </nav>
     )

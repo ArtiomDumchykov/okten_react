@@ -1,15 +1,9 @@
 const MAIN = '/';
-const TODOS = 'todos';
-const ALBUMS = 'albums';
-const COMMENTS = 'comments';
-const POSTS = 'posts';
-const POST_ID = 'posts/:postId';
+const MOVIES_LIST = 'moviesList';
+const MOVIE_ID = '/movieInfo/:movieId';
 
 export const ROUTES = {
     MAIN,
-    TODOS,
-    ALBUMS,
-    COMMENTS,
-    POSTS,
-    POST_ID
+    MOVIES_LIST,
+    MOVIE_ID
 }

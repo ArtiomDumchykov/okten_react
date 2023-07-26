@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function NotFoundPage() {
+export  function NotFoundPage() {
     return (
         <div
             style={{

@@ -1,24 +1,34 @@
-// export const BASE_URLS = {
-//     cars_url: 'http://owu.linkpc.net/carsAPI/v1',
-//     jsonplaceholder_url: "https://jsonplaceholder.typicode.com",
-//     spacex_url: 'https://api.spacexdata.com/v3'
-// } 
+const baseURL = 'https://api.themoviedb.org/3/';
+const posterUrl = 'https://image.tmdb.org/t/p/original/';
+const youTube = 'https://www.youtube.com/embed/';
 
-const baseURL = 'https://jsonplaceholder.typicode.com';
+const discover = '/discover';
+const movies = '/movies';
+const movie = '/movie';
+const favorite = '/favorite';
+const genre = '/genre';
+const search = '/search';
+const list = '/list';
+const credits = '/credits';
+const videos = '/videos';
+const account = '/account';
 
-const todos = '/todos'
-const albums = '/albums'
-const comments = '/comments'
-const posts = '/posts'
+const notFoundPoster = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png';
 
 const urls = {
-    todos,
-    albums,
-    comments,
-    posts
-}
+    movie: {
+        base: `${discover}${movie}`,
+        byId: (id) => `${movie}/${id}`,
+    },
+    genre: { base: `${genre}${movie}${list}` },
+    posterUrl: { base: posterUrl },
+    credits: { base: (id) => `${movie}/${id}${credits}` },
+    videos: { base: (id) => `${movie}/${id}${videos}` },
+    youTube: { base: youTube },
+    search: { base: `${search}${movie}` },
+    postFavorite: { base: (id) => `${account}/${id}${favorite}` },
+    getFavorite: { base: (id) => `${account}/${id}${favorite}${movies}` },
+    notFoundPoster: { base: notFoundPoster },
+};
 
-export {
-    baseURL,
-    urls
-}
+export { urls, baseURL };
