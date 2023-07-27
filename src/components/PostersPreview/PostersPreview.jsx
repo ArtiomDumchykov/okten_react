@@ -28,8 +28,13 @@ export function PostersPreview({ casts }) {
                 </div>
                 <div className={styles.posters__card}>
                     {/* {chunk.map((item) => ( */}
-                        <PosterPreview/>
+                        {/* <PosterPreview/> */}
                     {/* ))} */}
+
+                    {
+                        !!casts?.length && [...casts].map(item => <PosterPreview cast={item} key={item.id}/>)
+                    }
+
                 </div>
             </div>
         </>

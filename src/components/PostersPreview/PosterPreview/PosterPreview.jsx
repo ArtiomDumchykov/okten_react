@@ -4,7 +4,7 @@ import styles from './PosterPreview.module.scss';
 import { urls } from '../../../constans';
 
 export function PosterPreview({ cast }) {
-    // const { original_name, profile_path } = cast;
+    const { original_name, profile_path, name} = cast;
     // const img = profile_path ? urls.posterUrl.base + profile_path : urls.notFoundPoster.base;
     return (
         <div
@@ -16,6 +16,7 @@ export function PosterPreview({ cast }) {
             <h2 className={styles.poster_name}>
                 {/* {original_name} */}
             </h2>
+            <p>{name}</p>
         </div>
     )
 }
