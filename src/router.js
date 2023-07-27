@@ -2,7 +2,8 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import { ROUTES } from "./routes";
 import { MainLayout } from "./layots";
-import { MoviesPage } from "./pages";
+import { MoviePage, MoviesPage, NotFoundPage } from "./pages";
+
 
 export const router = createBrowserRouter([
     {
@@ -15,10 +16,27 @@ export const router = createBrowserRouter([
             },
             {
                 path: ROUTES.MOVIES_LIST,
-                element: <MoviesPage />
-            }
+                element: <MoviesPage />,
+            
+            },
+            {
+                path: ROUTES.MOVIE_ID,
+                element: <MoviePage />
+            },
+            {
+                path: ROUTES.MOVIE_FILTER_GENRE,
+                element: <MoviesPage/>
+            },
+            {
+                path: ROUTES.MOVIE_FILTER_REALESE_DATE,
+                element: <MoviesPage/>
+            },
 
         ]
+    },
+    {
+        path: "*",
+        element: <NotFoundPage/>
     }
 ])
 

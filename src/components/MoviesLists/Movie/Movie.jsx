@@ -3,9 +3,12 @@ import React from 'react';
 import { urls } from '../../../constans';
 
 import "./Movie.scss"
+import { useNavigate } from 'react-router-dom';
 
 export function Movie({movie}) {
     const { id, poster_path, title, release_date, vote_average } = movie;
+
+    const navigate = useNavigate()
 
     const data = +release_date.split('-')[0];
     const img = urls.posterUrl.base + poster_path || urls.notFoundPoster.base
@@ -17,6 +20,7 @@ export function Movie({movie}) {
         <div 
             className="movies-lists-item__img-wrap"
             style={{ backgroundImage: `url(${img})` }}
+            onClick={() => navigate(`/movieInfo/${id}`) }
         >
             <p></p>
         </div>
