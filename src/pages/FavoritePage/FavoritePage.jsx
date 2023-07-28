@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import { FavoriteLists } from '../../components'
-import { isCheckLocalStorage } from '../../utils';
 import { localStorageKeys } from '../../constans';
-
-
+import { isCheckLocalStorage } from '../../utils';
+import { FavoriteLists } from '../../components'
 
 export function FavoritePage() {
 

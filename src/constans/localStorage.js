@@ -1,4 +1,3 @@
-
 const localStorageKeys = {
     favoritesKey: "favorites"
 }
