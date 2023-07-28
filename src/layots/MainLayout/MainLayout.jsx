@@ -1,7 +1,7 @@
 import React from 'react';
-
-import { Header, Main } from '../../components'
 import { Outlet } from 'react-router-dom';
+
+import { Header, Main } from '../../components';
 
 export function MainLayout() {
     return (

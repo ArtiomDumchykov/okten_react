@@ -3,18 +3,19 @@ import { NavLink } from 'react-router-dom';
 
 import './Navbar.scss';
 import { Context } from '../../HOC';
+import { ROUTES } from '../../routes';
 
 
 export function Navbar() {
 
-    const { authContext: {isLogin} } = useContext(Context)
+    const { authContext: { isLogin } } = useContext(Context)
     return (
         <nav className="header__nav">
             <ul className='header-nav__list'>
                 <li className='header_nav__item'>
                     <NavLink
                         className="item-nav__link"
-                        to={"/"}
+                        to={ROUTES.MAIN}
                     >
                         Home
                         <span className='span'></span>
@@ -23,7 +24,7 @@ export function Navbar() {
                 <li className='header_nav__item'>
                     <NavLink
                         className="item-nav__link"
-                        to={"/moviesList"}
+                        to={ROUTES.MOVIES_LIST}
                     >
                         movies
                         <span className='span'></span>
@@ -33,7 +34,7 @@ export function Navbar() {
                 <li className='header_nav__item'>
                     <NavLink
                         className="item-nav__link"
-                        to={"/favorite"}
+                        to={ROUTES.FAVORITE}
                     >
                         favorite
                         <span className='span'></span>
@@ -45,7 +46,7 @@ export function Navbar() {
                         <li className='header_nav__item'>
                             <NavLink
                                 className="item-nav__link"
-                                to={"/login"}
+                                to={ROUTES.LOGIN}
                             >
                                 login
                                 <span className='span'></span>
