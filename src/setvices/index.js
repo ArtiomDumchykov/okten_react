@@ -1,3 +1,3 @@
-
 export * from './moviesService';
-export * from './creaditService'
+export * from './creaditService';
+export * from './favoriteService';

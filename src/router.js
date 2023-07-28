@@ -2,7 +2,7 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import { ROUTES } from "./routes";
 import { MainLayout } from "./layots";
-import { MoviePage, MoviesPage, NotFoundPage } from "./pages";
+import { LoginPage, MoviePage, MoviesPage, NotFoundPage } from "./pages";
 
 
 export const router = createBrowserRouter([
@@ -33,6 +33,10 @@ export const router = createBrowserRouter([
             },
 
         ]
+    },
+    {
+        path: ROUTES.LOGIN,
+        element: <LoginPage />
     },
     {
         path: "*",
