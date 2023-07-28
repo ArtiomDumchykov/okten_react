@@ -1,9 +1,11 @@
 import React from 'react'
-import { urls } from '../../constans';
-import './MovieInfo.scss'
-import GenreBadge from '../../components_UI/GenreBadge/GenreBadge';
-import { StarsRating } from '../../components_UI';
 import { useNavigate } from 'react-router-dom';
+
+import './MovieInfo.scss'
+
+import { StarsRating, GenreBadge } from '../../components_UI';
+import { urls } from '../../constans';
+import { addToFavorites } from '../../utils';
 
 export function MovieInfo({ movie }) {
     const { title, vote_average, original_language, genres, budget, runtime, release_date, overview } = movie;
@@ -12,6 +14,7 @@ export function MovieInfo({ movie }) {
     const releaseDate = +release_date.split('-')[0];
 
     const navigate = useNavigate()
+
     return (
         <>
             <div className="movie__info-info">
@@ -19,7 +22,6 @@ export function MovieInfo({ movie }) {
                     <div
                         style={{ backgroundImage: `url(${backdropPath})` }}
                         className="backdrop-path"
-
                     >
                         <p></p>
                     </div>
@@ -27,10 +29,14 @@ export function MovieInfo({ movie }) {
                         <div className="short-description-wrap">
                             <h2 className="movie-info-info__title">{title}</h2>
                             <div className="short-description__btn">
-                                <button>play</button>
-                                <button>favorite</button>
+                                <button className='action-btn btn-play'>play</button>
+                                <button 
+                                    className='action-btn btn-favorite'
+                                    onClick={(e) => addToFavorites(e, movie)}
+                                >
+                                    favorite
+                                </button>
                             </div>
-
                             <div className="movie-info__short-decription">
                                 <h2 className="movie-info-short-dectiption__title">About the film</h2>
                                 <div className='movie-info-short-desctiption-field-wrap'>
@@ -65,7 +71,6 @@ export function MovieInfo({ movie }) {
                                         onClick={() => navigate(`/filterMovie/years/${releaseDate}`)}
                                     >{releaseDate}</span>
                                 </div>
-
                             </div>
                         </div>
                         <div className="overview">

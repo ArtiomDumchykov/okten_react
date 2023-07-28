@@ -12,7 +12,7 @@ export function MoviesLists({ callback, params }) {
     return (
         <section className='movies'>
             <div className="movies__container _container">
-                <h2 className='movies__title-header'>MoviesLists</h2>
+                {/* <h2 className='movies__title-header'>MoviesLists</h2> */}
                 <div className="movies__content">
                     <div className="movies-list-wrap">
                         <ul className='movies__list'>

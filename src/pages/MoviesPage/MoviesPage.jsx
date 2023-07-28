@@ -1,17 +1,16 @@
 import React from 'react';
-
-import { MoviesLists } from '../../components'
-import { movieService } from '../../setvices';
 import { useParams } from 'react-router-dom';
+
+import { movieService } from '../../services';
+import { MoviesLists } from '../../components';
 
 export function MoviesPage() {
 
-  const params = useParams();
+    const params = useParams();
 
-  console.log("params", params);
-  return (
-    <>
-        <MoviesLists callback={movieService.getAll} params={{...params}}/>
-    </>
-  )
+    return (
+        <>
+            <MoviesLists callback={movieService.getAll} params={{ ...params }} />
+        </>
+    )
 }

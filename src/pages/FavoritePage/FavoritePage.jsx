@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+
+import { FavoriteLists } from '../../components'
+import { isCheckLocalStorage } from '../../utils';
+import { localStorageKeys } from '../../constans';
+
+
 
 export function FavoritePage() {
-  return (
-    <div>
-        <h2>FavoritePage</h2>
-    </div>
-  )
+
+    const {favoritesKey} = localStorageKeys;
+
+    const isFavorites = isCheckLocalStorage(favoritesKey);
+
+    const [favoritesData, setFavoritesData] = useState(isFavorites || [])
+
+    return (
+        <>
+            <FavoriteLists favorites={favoritesData} />
+        </>
+    )
 }

@@ -6,8 +6,6 @@ import { LoginForm } from '../../components'
 import { BackToHome } from '../../components_UI';
 
 export function LoginPage() {
-
-
     return (
         <div className='wrap'>
             <BackToHome 

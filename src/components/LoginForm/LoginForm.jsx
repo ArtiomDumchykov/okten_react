@@ -1,19 +1,23 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import {joiResolver} from '@hookform/resolvers/joi';
 
 import './LoginForm.scss';
 
-import { db_users } from '../../db'
-import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes';
 import { Context } from '../../HOC';
+import { loginValidators } from '../../validatos';
+
+import { db_users } from '../../_db'; 
 
 export function LoginForm() {
     const navigate = useNavigate();
     const { setAuthContext } = useContext(Context)
 
     const { register, handleSubmit, reset, formState: { errors, isValid }, setValue } = useForm({
-        mode: 'all'
+        mode: 'all',
+        resolver: joiResolver(loginValidators)
     })
 
     const checkUser = async (user) => {
@@ -64,13 +68,15 @@ export function LoginForm() {
                             <div className="fields-wrap">
                                 <label htmlFor="" className="label-wrap">
                                     <span className="label-text">login</span>
-                                    <input type="text" {...register("login")} placeholder='login/usename' className='form-input' />
+                                    <input type="text" {...register("login")} placeholder='login' className='form-input' />
+                                    {errors.login && <span>{errors.login.message}</span>}
                                 </label>
                             </div>
                             <div className="fields-wrap">
                                 <label htmlFor="" className="label-wrap">
                                     <span className="label-text">password</span>
                                     <input type="password" {...register("password")} placeholder='password' className='form-input' />
+                                    {errors.password && <span>{errors.password.message}</span>}
                                 </label>
                             </div>
                         </div>

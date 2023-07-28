@@ -3,3 +3,4 @@ export * from './createPages.js';
 export * from './delay.js';
 export * from './localStorage.js';
 export * from './tranformData.js';
+export * from './favorites.js'

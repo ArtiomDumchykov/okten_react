@@ -2,10 +2,8 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import { ROUTES } from "./routes";
 import { MainLayout } from "./layots";
-import { LoginPage, MoviePage, MoviesPage, NotFoundPage } from "./pages";
+import { FavoritePage, LoginPage, MoviePage, MoviesPage, NotFoundPage } from "./pages";
 import { AuthRequired } from "./HOC/AuthRequired";
-import { FavoriteLists } from "./components";
-
 
 export const router = createBrowserRouter([
     {
@@ -19,7 +17,6 @@ export const router = createBrowserRouter([
             {
                 path: ROUTES.MOVIES_LIST,
                 element: <MoviesPage />,
-            
             },
             {
                 path: ROUTES.MOVIE_ID,
@@ -27,8 +24,8 @@ export const router = createBrowserRouter([
             },
 
             {
-                path: '/favorite',
-                element: <AuthRequired><FavoriteLists /></AuthRequired>
+                path: ROUTES.FAVORITE,
+                element: <AuthRequired><FavoritePage /></AuthRequired>
             },
 
             {
@@ -39,7 +36,6 @@ export const router = createBrowserRouter([
                 path: ROUTES.MOVIE_FILTER_REALESE_DATE,
                 element: <MoviesPage/>
             },
-
         ]
     },
     {

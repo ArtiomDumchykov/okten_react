@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { movieService } from "../setvices";
+import { movieService } from "../services";
 
 function useFetching(callback, deps = 0) {
     const [isLoading, setIsLoading] = useState(false);
@@ -25,12 +25,12 @@ function useFetching(callback, deps = 0) {
 }
 
 export function useScrollPagination(callback = movieService.getAll, params) {
-    console.log(params);
+
     const lastElementRef = useRef(null);
     const observer = useRef();
     const [page, setPage] = useState(1);
 
-    const { data, isLoading, error } = useFetching(callback.bind(null, {page, ...params} ), page);
+    const { data, isLoading, error } = useFetching(callback.bind(null, { page, ...params }), page);
 
     useEffect(() => {
         if (isLoading) return;
