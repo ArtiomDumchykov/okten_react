@@ -3,6 +3,8 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 import { ROUTES } from "./routes";
 import { MainLayout } from "./layots";
 import { LoginPage, MoviePage, MoviesPage, NotFoundPage } from "./pages";
+import { AuthRequired } from "./HOC/AuthRequired";
+import { FavoriteLists } from "./components";
 
 
 export const router = createBrowserRouter([
@@ -23,6 +25,12 @@ export const router = createBrowserRouter([
                 path: ROUTES.MOVIE_ID,
                 element: <MoviePage />
             },
+
+            {
+                path: '/favorite',
+                element: <AuthRequired><FavoriteLists /></AuthRequired>
+            },
+
             {
                 path: ROUTES.MOVIE_FILTER_GENRE,
                 element: <MoviesPage/>

@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import './Navbar.scss';
+import { Context } from '../../HOC';
+
 
 export function Navbar() {
-    const isLogin = false
+
+    const { authContext: {isLogin} } = useContext(Context)
     return (
         <nav className="header__nav">
             <ul className='header-nav__list'>
@@ -26,19 +29,17 @@ export function Navbar() {
                         <span className='span'></span>
                     </NavLink>
                 </li>
-                {
-                    !!isLogin && (
-                        <li className='header_nav__item'>
-                            <NavLink
-                                className="item-nav__link"
-                                to={"/favorite"}
-                            >
-                                favorite
-                                <span className='span'></span>
-                            </NavLink>
-                        </li>
-                    )
-                }
+
+                <li className='header_nav__item'>
+                    <NavLink
+                        className="item-nav__link"
+                        to={"/favorite"}
+                    >
+                        favorite
+                        <span className='span'></span>
+                    </NavLink>
+                </li>
+
                 {
                     !isLogin && (
                         <li className='header_nav__item'>

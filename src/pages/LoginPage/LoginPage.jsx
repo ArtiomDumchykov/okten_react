@@ -1,12 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { LoginForm } from '../../components'
 
-export {db_users}  from '../../db/db.js'
+
+
+
+
 
 export  function LoginPage() {
 
+  
+
+
+  
+
   return (
-    <div className='wrap'>
+    <div 
+      className='wrap'
+      style={{
+        display: "flex",
+        alignItems: "center"
+      }}
+    >
         <LoginForm />
     </div>
   )
