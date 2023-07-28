@@ -1,81 +1,102 @@
-import React from 'react'
-
-import styles from './PostersPreview.module.scss'
+import React, { useState, useMemo, useEffect } from 'react';
+import styles from './PostersPreview.module.scss';
 import { PosterPreview } from './PosterPreview/PosterPreview';
+import { createPages } from '../../utils';
 
-const utils_casts = {
+export const utils_casts = {
     limit: 5,
     all: null,
-    chunks: {},
-    total: null
-}
-
-const createChunks = (array) => {
-    if (!array || typeof array !== "object") return;
-
-    const totalChunks =  Math.ceil(array.length / utils_casts.limit);
-    
-    for (let i = 1; i <= totalChunks; i++) {
-        const startIndex = (i - 1) * utils_casts.limit;
-        const endIndex = i * utils_casts.limit;
-        utils_casts.chunks[`page_${i}`] = [...array].slice(startIndex, endIndex);
-    }
-
-    const lastChunk = utils_casts.chunks[`page_${totalChunks}`]
-    const preLastChunk = utils_casts.chunks[`page_${totalChunks - 1}`]
-    if (lastChunk.length < 5) {
-        console.log(lastChunk);
-
-        
-    }
-
-}
+    page: 1,
+    pages: {},
+    total: {
+        value: null,
+    },
+    getPage(page) {
+        return this.pages[`page_${page}`];
+    },
+};
 
 export function PostersPreview({ casts }) {
+    useEffect(() => {
+        
+        utils_casts.all = casts;
+        createPages(utils_casts);
+    }, [casts]);
 
-    createChunks(casts)
+    const getPage = useMemo(() => utils_casts.getPage.bind(utils_casts), []); 
 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [page, setPage] = useState([]);
 
+    useEffect(() => {
+        
+        setPage(getPage(currentPage));
+    }, [getPage, currentPage, casts]);
 
-    const handlePrev = () => {
+    const handlePrev = (e) => {
+        if (currentPage <= 1) {
+            const target = e.targer;
+            console.log(target);
+            return 
+        };
+        setCurrentPage(prev => prev - 1);
+    };
 
-    }
-
-    const handleNext = () => {
-
-    }
+    const handleNext = (e) => {
+        if (currentPage >= utils_casts.total.value) return;
+        setCurrentPage(prev => prev + 1);
+    };
 
     return (
-        <>
-            <h2>PostersPreview</h2>
-            <div className={styles.posters}>
-                <div className={styles.buttonContainer}>
-                    <button 
-                        className={styles.button}
-                        // onClick={handlePrev}
-                    >
-                        prev
-                        {/* <FaArrowCircleLeft /> */}
-                    </button>
-                    <button 
-                        className={styles.button}
-                        // onClick={handleNext}
-                    >
-                        next
-                        {/* <FaArrowCircleRight /> */}
-                    </button>
-                </div>
-                <div className={styles.posters__card}>
-                    {/* {chunk.map((item) => ( */}
-                        {/* <PosterPreview/> */}
-                    {/* ))} */}
 
-                    {
-                        !!casts?.length && [...casts].map(item => <PosterPreview cast={item} key={item.id}/>)
-                    }
-
-                </div>
+        <div className={styles.posters}>
+            <div className={styles.buttonContainer}>
+                <button 
+                    className={styles.button} 
+                    onClick={handlePrev}
+                    disabled={currentPage <= 1}
+                >
+                    prev
+                </button>
+                <button 
+                    className={styles.button} 
+                    onClick={handleNext}
+                    disabled={currentPage  === utils_casts.total.value}
+                >
+                    next
+                </button>
             </div>
-        </>
-    )
+            <div className={styles.posters__carts}>
+                {page?.length && [...page].map(item => <PosterPreview cast={item} key={item.id} />)}
+            </div>
+        </div>
+
+    );
 }
+
+// old experemental
+
+//     utils_casts.all = casts;
+//     createPages(utils_casts)
+
+//     const getPage = utils_casts.getPage.bind(utils_casts) 
+
+//     const [currentPage, setCurrentPage] = useState(utils_casts.page || 1)
+//     const [page, setPages] = useState(getPage(currentPage))
+
+//     const hadleSetCurrentPage = () => {
+//         setPages(getPage(currentPage))
+//     }
+
+//     const handlePrev = () => {
+//         if (currentPage <= 1 ) return
+
+//         setCurrentPage(prev => prev - 1)
+//         hadleSetCurrentPage()
+//     }
+
+//     const handleNext = () => {
+//         if (currentPage > utils_casts.total.value ) return
+//         setCurrentPage(prev => prev + 1)
+//         hadleSetCurrentPage()
+//     }

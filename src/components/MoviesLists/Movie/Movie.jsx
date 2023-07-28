@@ -26,7 +26,12 @@ export function Movie({movie}) {
         </div>
         <div
             className='badges'
-        >
+        >   
+        <span 
+            style={{
+                backgroundColor: vote_average > 5 ? "green" : "red"
+            }}
+            className="rating__badges">{vote_average}</span>
             {data === new Date().getFullYear() &&  <span className="new__badges-text">NEW</span>}
         </div>
         <div className="movies-lists-item__info-short">
