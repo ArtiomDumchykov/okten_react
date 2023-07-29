@@ -13,6 +13,10 @@ const credits = '/credits';
 const videos = '/videos';
 const account = '/account';
 
+const trending = '/trending'
+const day = '/day'
+const week = '/week'
+
 const notFoundPoster = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png';
 
 const urls = {
@@ -29,6 +33,10 @@ const urls = {
     postFavorite: { base: (id) => `${account}/${id}${favorite}` },
     getFavorite: { base: (id) => `${account}/${id}${favorite}${movies}` },
     notFoundPoster: { base: notFoundPoster },
+    trending: {
+        day: {base: `${trending}${movie}${day}`},
+        week: {base: `${trending}${movie}${week}`}
+    }
 };
 
 export { urls, baseURL };
