@@ -36,10 +36,6 @@ export const router = createBrowserRouter([
                 path: ROUTES.MOVIE_FILTER_REALESE_DATE,
                 element: <MoviesPage/>
             },
-            {
-                path: '/filter',
-                element: <MoviesFilterPage/>
-            }
         ]
     },
     {

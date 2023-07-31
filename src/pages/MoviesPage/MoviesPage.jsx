@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 
 import { movieService } from '../../services';
-import { MoviesLists } from '../../components';
+import { MoviesFilter, MoviesLists } from '../../components';
 
 export function MoviesPage() {
 
@@ -10,6 +10,9 @@ export function MoviesPage() {
 
     return (
         <>
+            <div className="filter">
+                <MoviesFilter/>
+            </div>
             <MoviesLists callback={movieService.getAll} params={{ ...params }} />
         </>
     )
