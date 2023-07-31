@@ -1,9 +1,9 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import { ROUTES } from "./routes";
-import { MainLayout } from "./layots";
-import { FavoritePage, LoginPage, MoviePage, MoviesPage, NotFoundPage } from "./pages";
 import { AuthRequired } from "./HOC/AuthRequired";
+import { MainLayout } from "./layots";
+import { FavoritePage, LoginPage, MoviePage, MoviesFilterPage, MoviesPage, NotFoundPage } from "./pages";
 
 export const router = createBrowserRouter([
     {
@@ -36,6 +36,10 @@ export const router = createBrowserRouter([
                 path: ROUTES.MOVIE_FILTER_REALESE_DATE,
                 element: <MoviesPage/>
             },
+            {
+                path: '/filter',
+                element: <MoviesFilterPage/>
+            }
         ]
     },
     {
