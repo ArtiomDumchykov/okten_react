@@ -5,37 +5,57 @@ const youTube = 'https://www.youtube.com/embed/';
 const discover = '/discover';
 const movies = '/movies';
 const movie = '/movie';
-const favorite = '/favorite';
 const genre = '/genre';
-const search = '/search';
 const list = '/list';
 const credits = '/credits';
+
+const favorite = '/favorite';
+
+const search = '/search';
+
 const videos = '/videos';
-const account = '/account';
+
+const upcoming = '/upcoming'
+
+const popular = '/popular';
+const top_rated = '/top_rated'
 
 const trending = '/trending'
 const day = '/day'
 const week = '/week'
 
-const notFoundPoster = 'https://www.salonlfc.com/wp-content/uploads/2018/01/image-not-found-scaled-1150x647.png';
+const notFoundPoster = "https://static.vecteezy.com/system/resources/previews/005/337/799/non_2x/icon-image-not-found-free-vector.jpg"
 
 const urls = {
     movie: {
         base: `${discover}${movie}`,
         byId: (id) => `${movie}/${id}`,
     },
+    posterUrl: { 
+        base: posterUrl, 
+        posterImage: (posterPath) => `${posterUrl}${posterPath}`
+    }, 
+    notFoundPoster: { base: notFoundPoster },
+
     genre: { base: `${genre}${movie}${list}` },
-    posterUrl: { base: posterUrl },
     credits: { base: (id) => `${movie}/${id}${credits}` },
+
+    search: { base: `${search}${movie}` },
+
     videos: { base: (id) => `${movie}/${id}${videos}` },
     youTube: { base: youTube },
-    search: { base: `${search}${movie}` },
-    postFavorite: { base: (id) => `${account}/${id}${favorite}` },
-    getFavorite: { base: (id) => `${account}/${id}${favorite}${movies}` },
-    notFoundPoster: { base: notFoundPoster },
+
+    popular: {base: `${movie}${popular}`},   
+    top_rated: {base: `${movie}${top_rated}`},   
+    upcoming: {base: `${movie}${upcoming}`}, 
+
     trending: {
         day: {base: `${trending}${movie}${day}`},
         week: {base: `${trending}${movie}${week}`}
+    },
+
+    youTube: {
+        base: (key) => `${youTube}${key}`
     }
 };
 

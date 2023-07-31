@@ -1,13 +1,14 @@
 import React from 'react'
 
 import styles from './PosterPreview.module.scss';
+
 import { urls } from '../../../constans';
 
 export function PosterPreview({ cast }) {
     const { original_name, profile_path } = cast;
+
     const img = profile_path ? urls.posterUrl.base + profile_path : urls.notFoundPoster.base;
-    // console.log(urls.posterUrl.base + profile_path);
-    // console.log("NOT_FOUND_IMG", urls.notFoundPoster.base);
+
     return (
         <div
             className={styles.poster}
@@ -21,3 +22,9 @@ export function PosterPreview({ cast }) {
         </div>
     )
 }
+
+
+
+
+
+

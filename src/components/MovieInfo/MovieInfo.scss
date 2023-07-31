@@ -5,25 +5,18 @@
     gap: 30px;
 }
 
-
-
-
 .backdrop-path {
-    
     height: 500px;
-
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
 
-    & > p {
+    &>p {
         width: 350px;
     }
 }
 
-
 .movie-info__decription-wrap {
-    // width: 450px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -35,10 +28,46 @@
 }
 
 .movie-info-info__title {
+    font-size: 24px;
+    font-weight: 600;
     margin-bottom: 25px;
 }
+
 .short-description__btn {
+    display: flex;
+    gap: 10px;
     margin-bottom: 15px;
+}
+
+/* Styles for the "play" and "favorite" buttons */
+.action-btn {
+    border: none;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+
+}
+
+.btn-play {
+    background: linear-gradient(to right, #f58b24, #f03255);
+    transition: $transition;
+}
+
+.btn-favorite {
+    background: linear-gradient(to right, #93329e, #2b98f0);
+    transition: $transition;
+}
+
+.action-btn:hover {
+    filter: brightness(1.2);
+}
+
+.action-btn:active {
+    transform: scale(0.95);
 }
 
 .movie-info__short-decription {
@@ -53,29 +82,24 @@
     padding: 5px 7px;
     gap: 10px;
 }
+
 .short-description-field {
-    // width: 100px;
-    flex: 0 1 100px;
+    flex: 0 0 100px;
 }
 
 .genre-field {
     display: flex;
 }
+
 .genre {
     display: flex;
+    flex-wrap: wrap;
     gap: 7px;
-    
 }
 
-
-
-
-
-
-
-
-
-
+.genre-field {
+    align-items: flex-start;
+}
 
 .realese_date-text {
     transition: $transition;
@@ -88,14 +112,9 @@
 }
 
 .overview {
- 
+    text-indent: 10px;
+    line-height: 1.3;
 }
-
-
-
-
-
-
 
 
 

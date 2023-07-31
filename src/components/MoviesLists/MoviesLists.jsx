@@ -2,8 +2,8 @@ import React from 'react';
 
 import './MoviesLists.scss';
 
-import { Movie } from './Movie/Movie';
 import { useScrollPagination } from '../../hooks/usePagination';
+import { Movie } from './Movie/Movie';
 
 export function MoviesLists({ callback, params }) {
 

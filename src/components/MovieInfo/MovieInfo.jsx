@@ -1,19 +1,32 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 import './MovieInfo.scss'
 
-import { StarsRating, GenreBadge } from '../../components_UI';
 import { urls } from '../../constans';
+import { ROUTES } from '../../routes';
 import { addToFavorites } from '../../utils';
+import { Context } from '../../HOC';
+import { StarsRating, GenreBadge } from '../../components_UI';
 
-export function MovieInfo({ movie }) {
+export function MovieInfo({ movie, onOpen }) {
+
+    const navigate = useNavigate();
+    
+    const { authContext: { isLogin } } = useContext(Context)
+
     const { title, vote_average, original_language, genres, budget, runtime, release_date, overview } = movie;
 
     const backdropPath = movie?.poster_path ? urls.posterUrl.base + movie.poster_path : urls.notFoundPoster.base;
     const releaseDate = +release_date.split('-')[0];
 
-    const navigate = useNavigate()
+    const handleFavorite = (e) => {
+        if (isLogin) {
+            addToFavorites(e, movie)
+        } else {
+            !!window.confirm("You must Login, You want it?") && navigate(ROUTES.LOGIN)
+        }
+    }
 
     return (
         <>
@@ -29,10 +42,15 @@ export function MovieInfo({ movie }) {
                         <div className="short-description-wrap">
                             <h2 className="movie-info-info__title">{title}</h2>
                             <div className="short-description__btn">
-                                <button className='action-btn btn-play'>play</button>
-                                <button 
+                                <button
+                                    className='action-btn btn-play'
+                                    onClick={() => onOpen()}
+                                >
+                                    play
+                                </button>
+                                <button
                                     className='action-btn btn-favorite'
-                                    onClick={(e) => addToFavorites(e, movie)}
+                                    onClick={(e) => handleFavorite(e)}
                                 >
                                     favorite
                                 </button>
@@ -49,7 +67,7 @@ export function MovieInfo({ movie }) {
                                     <span>{original_language}</span>
                                 </div>
                                 <div className='movie-info-short-desctiption-field-wrap  genre-field'>
-                                    <span className='short-description-field'>Genre</span>
+                                    <span className='short-description-field genre-field'>Genre</span>
                                     <div className="genre">
                                         {
                                             genres.map((value) => <GenreBadge key={value.id} genre={value} />)
@@ -74,9 +92,7 @@ export function MovieInfo({ movie }) {
                             </div>
                         </div>
                         <div className="overview">
-                            <p>
-                                <strong>Description</strong> {overview}
-                            </p>
+                            <p>{overview}</p>
                         </div>
                     </div>
                 </div>

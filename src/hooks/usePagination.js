@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+
 import { movieService } from "../services";
 
 function useFetching(callback, deps = 0) {

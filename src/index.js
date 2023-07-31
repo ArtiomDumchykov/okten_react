@@ -6,11 +6,14 @@ import './index.scss';
 
 import { router } from './router';
 import { AuthContextProvider } from './HOC/AuthContextProvider';
+import { ThemeContextProvider } from './HOC';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <AuthContextProvider>
-        <RouterProvider router={router}/>
+        <ThemeContextProvider>
+            <RouterProvider router={router} />
+        </ThemeContextProvider>
     </AuthContextProvider>
 
 );

@@ -6,19 +6,19 @@
     position: relative;
     overflow: hidden;
     height: 250px;
-    
+
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    
+
     transition: $transition;
 
     &:hover .poster_name {
         transform: translateY(0%);
-    
+
         transition: $transition;
     }
-  
+
 }
 
 .poster_name {
@@ -33,5 +33,3 @@
     transition: $transition;
 
 }
-
-

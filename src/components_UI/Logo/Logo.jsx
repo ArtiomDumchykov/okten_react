@@ -1,7 +1,11 @@
 import React from 'react'
 
-export function Logo() {
+import styles from './Logo.module.scss';
+
+export function Logo({children, className, ...rest}) {
   return (
-    <div>Logo</div>
+    <div className={className} {...rest}>
+      {children}
+    </div>
   )
 }

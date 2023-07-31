@@ -1,42 +1,24 @@
-import React, { useContext } from 'react';
-
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import './Header.scss';
-import { Navbar } from '../../Navbar/Navbar';
-import { Context } from '../../../HOC';
-import { NavLink } from 'react-router-dom';
+
 import { ROUTES } from '../../../routes';
+import { Navbar } from '../../Navbar/Navbar';
 import { Logo } from '../../../components_UI';
 
 export function Header() {
-
-    const { authContext: { isLogin } } = useContext(Context)
+    const navigate = useNavigate()
     return (
         <header className='header'>
             <div className="header__container _container">
-                <div className="header__body">
-                    <Logo />
-                    <Navbar />
-                    <div className="actions">
-                        <ul className='actions__list'>
-                            {
-                                !isLogin && (
-                                    <li className="action__item login-action">
-                                        <div className="action-login-wrap">
-                                            <NavLink
-                                                className="item-nav__link"
-                                                to={ROUTES.LOGIN}
-                                            >
-                                                login
-                                                <span className='span'></span>
-                                            </NavLink>
-                                        </div>
-                                    </li>
-                                )
-                            }
-                        </ul>
-                    </div>
-                </div>
+                <Logo
+                    className='header__logo'
+                    onClick={() => navigate(ROUTES.MAIN)}
+                >
+                    LOGO
+                </Logo>
+                <Navbar />
             </div>
         </header>
     )

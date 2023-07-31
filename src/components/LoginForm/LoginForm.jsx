@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import {joiResolver} from '@hookform/resolvers/joi';
+import { joiResolver } from '@hookform/resolvers/joi';
 
 import './LoginForm.scss';
 
@@ -9,7 +9,7 @@ import { ROUTES } from '../../routes';
 import { Context } from '../../HOC';
 import { loginValidators } from '../../validatos';
 
-import { db_users } from '../../_db'; 
+import { db_users } from '../../_db';
 
 export function LoginForm() {
     const navigate = useNavigate();
@@ -101,23 +101,3 @@ export function LoginForm() {
     )
 }
 
-// export function LoginForm() {
-//     return (
-//         <div>
-//             <form className={styles.form} onSubmit={handleSubmit} autoComplete={'off'}>
-//                 <label>
-//                     Email:
-//                     <br />
-//                     <input type="text" ref={emailRef} />
-//                 </label>
-//                 <label>
-//                     Password:
-//                     <br />
-//                     <input type="password" ref={passwordRef} />
-//                 </label>
-
-//                 <button type='submit'>Login</button>
-//             </form>
-//         </div>
-//     )
-// }

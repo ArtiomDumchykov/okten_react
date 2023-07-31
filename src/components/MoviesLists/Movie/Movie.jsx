@@ -1,9 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import "./Movie.scss";
 
 import { urls } from '../../../constans';
-
-import "./Movie.scss"
-import { useNavigate } from 'react-router-dom';
 
 export function Movie({movie}) {
     const { id, poster_path, title, release_date, vote_average } = movie;

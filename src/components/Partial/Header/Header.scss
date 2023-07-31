@@ -14,6 +14,29 @@
     align-items: center;
 }
 
-.actions {
-    
+.actions {}
+
+
+body.dark {
+    .header {
+        box-shadow: 0 3px 10px rgba(230, 153, 39, 0.2);
+    }
+}
+
+.header {
+    position: relative;
+    width: 100%;
+    padding: 15px 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.header__container {
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    margin-right: 75px;
+    cursor: pointer;
 }

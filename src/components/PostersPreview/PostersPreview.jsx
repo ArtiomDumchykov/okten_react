@@ -1,5 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
+
 import styles from './PostersPreview.module.scss';
+
 import { PosterPreview } from './PosterPreview/PosterPreview';
 import { createPages } from '../../utils';
 

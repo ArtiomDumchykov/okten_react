@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 export const GenreBadge = ({ genre }) => {
     const { id: with_genres, name } = genre;
     const navigate = useNavigate();

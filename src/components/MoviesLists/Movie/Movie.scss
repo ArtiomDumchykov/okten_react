@@ -6,6 +6,14 @@
     width: 240px;
 
 
+    cursor:pointer;
+    transition: $transition;
+    &:hover {
+        transform: scale(1.03);
+        box-shadow: 1px 1px 14px 4px rgba(255, 107, 8, 0.42);
+        transition: $transition;
+    }
+
     &:hover .movies-lists-item__info-short{
         transform: translateY(0%);
         transition: $transition;
@@ -30,7 +38,7 @@
 
     transform: translateY(100%);
 
-    background-color: red;
+    background-color: rgba(185, 112, 1, 0.9);
 
     transition: $transition;
 }
