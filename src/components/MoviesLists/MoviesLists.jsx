@@ -2,7 +2,7 @@ import React from 'react';
 
 import './MoviesLists.scss';
 
-import { useScrollPagination } from '../../hooks/usePagination';
+import { useScrollPagination } from '../../hooks';
 import { Movie } from './Movie/Movie';
 
 export function MoviesLists({ callback, params }) {

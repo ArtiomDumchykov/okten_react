@@ -1,259 +1,236 @@
-// import React, { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
+// import React, { useEffect, useRef, useState } from 'react';
+// import { useForm } from 'react-hook-form';
 
+// import './MoviesFilter.scss';
 
-// import { movieService } from '../../services';
-// // import { MoviesFilter, MoviesLists } from '../../components';
+// import { useGenre } from '../../hooks';
 
-// export const  MoviesFilterPage = () => {
-//   const params = useParams();
-//   const [filterParams, setFilterParams] = useState(params); // Add state for the filter parameters
-
-//   // Function to handle changes in the filter parameters
-//   const handleFilterChange = (newFilterParams) => {
-//     setFilterParams(newFilterParams);
-//   };
-
-//   return (
-//     <>
-//       {/* Pass the filter parameters to the MoviesLists component */}
-//       {/* <MoviesFilter onFilterChange={handleFilterChange} />
-//       <MoviesLists callback={movieService.getAll} params={{ ...filterParams }} /> */}
-//     </>
-//   );
+// const initialForm = {
+//     search: '',
+//     genre: '',
+//     year: ''
 // }
 
+// export const MovieFilter = () => {
+//     const { genres } = useGenre();
 
-// const useGenre = () => {
-//     const [genres, setGenres] = useState([])
+//     const { register, handleSubmit, formState: {errors}, setValue } = useForm();
+
+//     const [selectDataForm, setSelectDataForm] = useState(initialForm)
+//     // const [selectedGenre, setSelectedGenre] = useState('all');
+//     // const [selectedYear, setSelectedYear] = useState('all');
+
 //     useEffect(() => {
-//       (async() => {
-//         try {   
-//             const {data} = await movieService.getGenres()
-//             console.log("data", data);
-//             setGenres(data?.genres)
-//         } catch (error) {
-//             console.log(error);
+//         if (selectDataForm) {
+//             setValue("search", selectDataForm.search)
+//             setValue("genre", selectDataForm.genre)
+//             setValue("year", selectDataForm.year)
 //         }
-//       })()
-//     }, [])
 
-//     return {
-//         genres, setGenres
-//     }
-// }
-
-// export const MoviesFilter = ({ onFilterChange }) => {
-//   const [searchQuery, setSearchQuery] = useState('');
-//   const [selectedGenres, setSelectedGenres] = useState([]);
-//   const [startYear, setStartYear] = useState('');
-//   const [endYear, setEndYear] = useState('');
-
-//   const handleSearchChange = (event) => {
-//     setSearchQuery(event.target.value);
-//   };
-
-//   const handleGenreChange = (event) => {
-//     const selectedOptions = event.target.options;
-//     const selectedGenres = [];
-//     for (let i = 0; i < selectedOptions.length; i++) {
-//       if (selectedOptions[i].selected) {
-//         selectedGenres.push(selectedOptions[i].value);
-//       }
-//     }
-//     setSelectedGenres(selectedGenres);
-//   };
-
-//   const handleStartYearChange = (event) => {
-//     setStartYear(event.target.value);
-//   };
-
-//   const handleEndYearChange = (event) => {
-//     setEndYear(event.target.value);
-//   };
-
-//   const handleSearch = () => {
-//     const filterParams = {
-//       searchQuery,
-//       selectedGenres,
-//       startYear,
-//       endYear,
+//     }, [selectDataForm])
+//     console.log("selectDataForm", console.log("selectDataForm"));
+//     const handleSearchForm = (data) => {
+//         console.log('Search Query:', data);
+//         // Perform search logic here
 //     };
-//     onFilterChange(filterParams);
-//   };
 
-//   const { genres, setGenres} = useGenre()
-//   return (
-//     <div>
-//       <input
-//         type="text"
-//         value={searchQuery}
-//         onChange={handleSearchChange}
-//         placeholder="Enter movie title"
-//       />
-//       <select 
-//         multiple 
-//         value={selectedGenres} 
-//         onChange={handleGenreChange}>
-//         {
-//         !!genres?.length && [...genres].map(item => {
-//             const {id: genreId, name: genreName} = item;
-//             return (
-//                 <option 
-//                     value={genreId}
-//                     className='genre__item'
-//                 >
-//                     genreName
-//                     </option>
-//             )
-//         })
-//         }
-//         {/* Add more genres as needed */}
-//       </select>
-//       <label>Start Year:</label>
-//       <input
-//         type="number"
-//         value={startYear}
-//         onChange={handleStartYearChange}
-//         placeholder="Start Year"
-//       />
-//       <label>End Year:</label>
-//       <input
-//         type="number"
-//         value={endYear}
-//         onChange={handleEndYearChange}
-//         placeholder="End Year"
-//       />
-//       <button onClick={handleSearch}>Search</button>
-//     </div>
-//   );
+//     return (
+//         <section className="movies-filter">
+//             <div className="mofies-filter__container _container">
+//                 <div className="movies-filter__body">
+//                     <form
+//                         className='form__search'
+//                         onSubmit={handleSubmit(handleSearchForm)}
+//                     >
+//                         <div className="form-search__container">
+//                             <div className="form-search__body">
+//                                 <div className="search-input-wrap">
+//                                     <div>
+//                                         {/* Search field for movie */}
+//                                         <input type="text" {...register('search')} />
+//                                     </div>
+//                                     <div className='form-search-btn-wrap'>
+//                                         <button type="submit">Search</button>
+//                                     </div>
+//                                 </div>
+//                                 <div className="filter__actions">
+//                                     <CustomSelect options={genres} register={{...register('genre')}}  initialValue={selectDataForm?.genre} onSelect={handleSearchForm}/>
+//                                     <CustomSelect options={arrYears()} register={{...register('year')}}  initialValue={selectDataForm?.year} onSelect={handleSearchForm}/>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </form>
+//                 </div>
+//             </div>
+//         </section>
+//     );
 // };
 
 
+// function CustomSelect({ options, initialValue = 'all', onSelect, register }) {
+//     const [selectedValue, setSelectedValue] = useState(initialValue);
+//     const [isDropdownOpen, setDropdownOpen] = useState(false);
+//     const optionsListRef = useRef(null);
 
-import React, { useEffect, useState } from 'react';
-import { movieService } from '../../services';
+//     const handleOptionSelect = (value) => {
+//         setSelectedValue(value);
+//         setDropdownOpen(false);
+//         onSelect(value); // Pass the selected value back to the parent component
+//     };
+
+//     const toggleDropdown = () => {
+//         setDropdownOpen((prevState) => !prevState);
+//     };
+
+//     return (
+//         <div className={`custom-select ${isDropdownOpen ? 'open' : ''}`}>
+//             <div className="selected-value" onClick={toggleDropdown}>
+//                 {selectedValue}
+//             </div>
+//             <ul className={`options-list ${isDropdownOpen ? 'open' : ''}`} ref={optionsListRef}>
+//                 <li className="option" onClick={() => handleOptionSelect('all')}>
+//                     <input type="text" {...register} hidden/>
+//                     all
+//                 </li>
+//                 {options.map((option) => (
+//                     <li 
+//                         key={option.id} 
+//                         className="option" 
+//                         onClick={() => handleOptionSelect(option.name)}
+//                     >
+//                         <input type="text" {...register} hidden/>
+//                         {option.name}
+//                     </li>
+//                 ))}
+//             </ul>
+//         </div>
+//     );
+// }
+
+
+
+
+// function arrYears(currentYear = new Date().getFullYear()) {
+//     const years = Array.from({ length: currentYear - 1970 + 1 }, (_, index) => 1970 + index);
+//     return years.map((item) => ({ id: item, name: item })).reverse();
+// }
+
+import React, { useEffect, useRef, useState } from 'react';
+import { useForm } from 'react-hook-form';
 
 import './MoviesFilter.scss';
 
-const useGenre = () => {
-    const [genres, setGenres] = useState([]);
-    useEffect(() => {
-        (async () => {
-            try {
-                const { data } = await movieService.getGenres();
-                setGenres(data?.genres);
-            } catch (error) {
-                console.log(error);
-            }
-        })();
-    }, []);
+import { useGenre } from '../../hooks';
 
-    return {
-        genres,
-        setGenres,
+const initialForm = {
+    search: '',
+    genre: '',
+    year: ''
+}
+
+export const MovieFilter = () => {
+    const { genres } = useGenre();
+
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm();
+    const [selectDataForm, setSelectDataForm] = useState(initialForm)
+
+    useEffect(() => {
+        if (selectDataForm) {
+            setValue("search", selectDataForm.search)
+            setValue("genre", selectDataForm.genre)
+            setValue("year", selectDataForm.year)
+        }
+    }, [selectDataForm, setValue])
+
+    const handleSearchForm = (data) => {
+        console.log('Search Query:', data);
+        // Perform search logic here
     };
+
+    const handleGenreSelect = (value) => {
+        setSelectDataForm(prevState => ({ ...prevState, genre: value }));
+    };
+
+    const handleYearSelect = (value) => {
+        setSelectDataForm(prevState => ({ ...prevState, year: value }));
+    };
+
+    return (
+        <section className="movies-filter">
+          <div className="mofies-filter__container _container">
+            <div className="movies-filter__body">
+              <form
+                className='form__search'
+                onSubmit={handleSubmit(handleSearchForm)}
+              >
+                <div className="form-search__container">
+                  <div className="form-search__body">
+                    <div className="search-input-wrap">
+                      <div>
+                        {/* Search field for movie */}
+                        <input type="text" {...register('search', { required: true })} />
+                      </div>
+                      {errors.search && <span className="error-message">This field is required.</span>}
+                      <div className='form-search-btn-wrap'>
+                        <button type="submit">Search</button>
+                      </div>
+                    </div>
+                    <div className="filter__actions">
+                      <CustomSelect options={genres} initialValue={selectDataForm?.genre} onSelect={(value) => setSelectDataForm(prev => ({ ...prev, genre: value }))} />
+                      <CustomSelect options={arrYears()} initialValue={selectDataForm?.year} onSelect={(value) => setSelectDataForm(prev => ({ ...prev, year: value }))} />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      );
 };
 
-export const MoviesFilter = ({ onFilterChange }) => {
-    const [searchQuery, setSearchQuery] = useState('');
-    const [selectedGenres, setSelectedGenres] = useState([]);
-    const [startYear, setStartYear] = useState('');
-    const [endYear, setEndYear] = useState('');
+function CustomSelect({ options, initialValue = 'all', onSelect, register }) {
 
-    useEffect(() => {
-        // Reset genres and years when the component is mounted
-        setSelectedGenres([]);
-        setStartYear('');
-        setEndYear('');
-    }, []);
+    const [selectedValue, setSelectedValue] = useState(initialValue);
+    const [isDropdownOpen, setDropdownOpen] = useState(false);
+    const optionsListRef = useRef(null);
 
-    const handleSearchChange = (event) => {
-        setSearchQuery(event.target.value);
+    const handleOptionSelect = (value) => {
+        setSelectedValue(value);
+        setDropdownOpen(false);
+        onSelect(value); // Pass the selected value back to the parent component
+      };
+
+
+    const toggleDropdown = () => {
+        setDropdownOpen((prevState) => !prevState);
     };
 
-    //   const handleGenreChange = (event) => {
-    //     const selectedOptions = event.target.options;
-    //     const selectedGenres = [];
-    //     for (let i = 0; i < selectedOptions.length; i++) {
-    //       if (selectedOptions[i].selected) {
-    //         selectedGenres.push(selectedOptions[i].value);
-    //       }
-    //     }
-    //     setSelectedGenres(selectedGenres);
-    //   };
-
-    const handleGenreChange = (event) => {
-        const selectedOptions = event.target.options;
-        const selectedGenres = [];
-        for (let i = 0; i < selectedOptions.length; i++) {
-            if (selectedOptions[i].selected && selectedOptions[i].value !== 'all') {
-                selectedGenres.push(selectedOptions[i].value);
-            }
-        }
-
-        setSelectedGenres(selectedGenres);
-    };
-
-    const handleStartYearChange = (event) => {
-        setStartYear(event.target.value);
-    };
-
-    const handleEndYearChange = (event) => {
-        setEndYear(event.target.value);
-    };
-
-    const handleSearch = () => {
-        const filterParams = {
-            searchQuery,
-            selectedGenres,
-            startYear: startYear || 'all',
-            endYear: endYear || 'all',
-        };
-        onFilterChange(filterParams);
-    };
-
-    const { genres } = useGenre();
     return (
-        <div className="movies-filter">
-            <input
-                type="text"
-                value={searchQuery}
-                onChange={handleSearchChange}
-                placeholder="Enter movie title"
-            />
-            <select multiple value={selectedGenres} onChange={handleGenreChange} className="genre__select">
-                <option value="all" disabled hidden>
-                    All
-                </option>
-                {genres?.map((item) => {
-                    const { id: genreId, name: genreName } = item;
-                    return (
-                        <option
-                            value={genreId}
-                            key={genreId}
-                            className={selectedGenres.includes(genreId) ? 'show-option' : 'hide-option'}
-                        >
-                            {genreName}
-                        </option>
-                    );
-                })}
-            </select>
-            <label>Start Year:</label>
-            <input
-                type="number"
-                value={startYear}
-                onChange={handleStartYearChange}
-                placeholder="All"
-            />
-            <label>End Year:</label>
-            <input
-                type="number"
-                value={endYear}
-                onChange={handleEndYearChange}
-                placeholder="All"
-            />
-            <button onClick={handleSearch}>Search</button>
+        <div className={`custom-select ${isDropdownOpen ? 'open' : ''}`}>
+            <div className="selected-value" onClick={toggleDropdown}>
+                {selectedValue}
+            </div>
+            <ul className={`options-list ${isDropdownOpen ? 'open' : ''}`} ref={optionsListRef}>
+                <li className="option" onClick={() => handleOptionSelect('all')}>
+                    {/* <input type="text" {...register} hidden /> */}
+                    all
+                </li>
+                {options.map((option) => (
+                    <li
+                        key={option.id}
+                        className="option"
+                        onClick={() => handleOptionSelect(option.name)}
+                    >
+                        {/* <input type="text" {...register} hidden /> */}
+                        {option.name}
+                    </li>
+                ))}
+            </ul>
         </div>
     );
-};
+}
+
+function arrYears(currentYear = new Date().getFullYear()) {
+    const years = Array.from({ length: currentYear - 1970 + 1 }, (_, index) => 1970 + index);
+    return years.map((item) => ({ id: item, name: item })).reverse();
+}

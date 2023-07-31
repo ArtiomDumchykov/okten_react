@@ -28,6 +28,15 @@ export function MovieInfo({ movie, onOpen }) {
         }
     }
 
+
+    // const handleFilterName = ({name}) => {
+    //     navigate(`/moviesList?query=${(name)}`)
+    // } 
+
+    // const handleFilterName = ({name}) => {
+    //     navigate(`/moviesList?query=${(name)}`)
+    // } 
+
     return (
         <>
             <div className="movie__info-info">
@@ -40,7 +49,12 @@ export function MovieInfo({ movie, onOpen }) {
                     </div>
                     <div className="movie-info__decription-wrap">
                         <div className="short-description-wrap">
-                            <h2 className="movie-info-info__title">{title}</h2>
+                            <h2 
+                                className="movie-info-info__title"
+                                // onClick={() => handleFilterName({name: title})}
+                            >
+                                {title}
+                            </h2>
                             <div className="short-description__btn">
                                 <button
                                     className='action-btn btn-play'

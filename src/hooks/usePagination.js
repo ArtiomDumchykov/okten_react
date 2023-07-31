@@ -31,7 +31,7 @@ export function useScrollPagination(callback = movieService.getAll, params) {
     const observer = useRef();
     const [page, setPage] = useState(1);
 
-    const { data, isLoading, error } = useFetching(callback.bind(null, { page, ...params }), page);
+    const { data, isLoading, error } = useFetching(callback.bind(null, {page, ...params }), page);
 
     useEffect(() => {
         if (isLoading) return;
