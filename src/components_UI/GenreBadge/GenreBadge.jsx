@@ -16,7 +16,7 @@ export const GenreBadge = ({ genre }) => {
                 fontSize: '12px',
                 cursor: 'pointer',
             }}
-            onClick={() => navigate(`moviesList/genre/${with_genres}`)}
+            onClick={() => navigate(`/moviesList/genre/${with_genres}`)}
         >
             {name}
         </span>

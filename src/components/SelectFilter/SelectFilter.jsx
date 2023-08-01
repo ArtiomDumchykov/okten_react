@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import './SelectFilter.scss'
-import { useParams } from 'react-router-dom';
-
-
 
 export function SelectFilter({ options, initialValue = 'all', register, onSelect }) {
     const [selectedValue, setSelectedValue] = useState(initialValue);
@@ -15,9 +12,8 @@ export function SelectFilter({ options, initialValue = 'all', register, onSelect
     const handleOptionSelect = (value) => {
         setSelectedValue(value);
         setDropdownOpen(false);
-        onSelect(value);
+        onSelect(value === "all" ? "" : value);
     };
-
 
     return (
         <>
@@ -28,19 +24,22 @@ export function SelectFilter({ options, initialValue = 'all', register, onSelect
                 <ul className={`options-list ${isDropdownOpen ? 'open' : ''}`}>
                     <li
                         className="option"
-                        onClick={() => handleOptionSelect('')}
+                        onClick={() => handleOptionSelect('all')}
+
                     >
                         All
                     </li>
-                    {options.map((option) => (
-                        <li
-                            key={option.id}
-                            className="option"
-                            onClick={() => handleOptionSelect(option.name)}
-                        >
-                            {option.name}
-                        </li>
-                    ))}
+                    {
+                        options.map((option) => (
+                            <li
+                                key={option.id}
+                                className="option"
+                                onClick={() => handleOptionSelect(option.name)}
+                            >
+                                {option.name}
+                            </li>
+                        ))
+                    }
                 </ul>
             </div>
         </>
