@@ -100,7 +100,7 @@ export function MovieInfo({ movie, onOpen }) {
                                     <span className='short-description-field'>Release date</span>
                                     <span
                                         className='realese_date-text'
-                                        onClick={() => navigate(`/filterMovie/years/${releaseDate}`)}
+                                        onClick={() => navigate(`moviesList/years/${releaseDate}`)}
                                     >{releaseDate}</span>
                                 </div>
                             </div>

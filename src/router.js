@@ -17,6 +17,17 @@ export const router = createBrowserRouter([
             {
                 path: ROUTES.MOVIES_LIST,
                 element: <MoviesPage />,
+                children: [
+                    {
+                        path: "genre/:with_genres",
+                        element: <MoviesPage/>
+                    },
+                    {
+                        path: "years/:primary_release_year",
+                        element: <MoviesPage/>
+                    },
+
+                ]
             },
             {
                 path: ROUTES.MOVIE_ID,
