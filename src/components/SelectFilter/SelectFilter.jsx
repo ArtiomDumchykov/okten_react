@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './SelectFilter.scss'
 
@@ -8,6 +8,8 @@ export function SelectFilter({ options, initialValue = 'all', register, onSelect
     const toggleDropdown = () => {
         setDropdownOpen((prevState) => !prevState);
     };
+
+
 
     const handleOptionSelect = (value) => {
         setSelectedValue(value);

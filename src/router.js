@@ -19,13 +19,9 @@ export const router = createBrowserRouter([
                 element: <MoviesPage />,
                 children: [
                     {
-                        path: "genre/:with_genres",
+                        path: ':filter',
                         element: <MoviesPage/>
-                    },
-                    {
-                        path: "years/:primary_release_year",
-                        element: <MoviesPage/>
-                    },
+                    }
 
                 ]
             },
@@ -39,14 +35,14 @@ export const router = createBrowserRouter([
                 element: <AuthRequired><FavoritePage /></AuthRequired>
             },
 
-            {
-                path: ROUTES.MOVIE_FILTER_GENRE,
-                element: <MoviesPage/>
-            },
-            {
-                path: ROUTES.MOVIE_FILTER_REALESE_DATE,
-                element: <MoviesPage/>
-            },
+            // {
+            //     path: ROUTES.MOVIE_FILTER_GENRE,
+            //     element: <MoviesPage/>
+            // },
+            // {
+            //     path: ROUTES.MOVIE_FILTER_REALESE_DATE,
+            //     element: <MoviesPage/>
+            // },
 
             
         ]

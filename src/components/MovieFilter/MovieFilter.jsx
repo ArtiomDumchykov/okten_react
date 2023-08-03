@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+
 import './MoviesFilter.scss';
+
 import { useGenre } from '../../hooks';
 import { SelectFilter } from '../SelectFilter/SelectFilter';
-import { object } from 'joi';
 
 const initialForm = {
   // search: '',
@@ -11,17 +12,19 @@ const initialForm = {
   primary_release_year: ''
 };
 
-export const MovieFilter = ({setParamsFilter, dataForm}) => {
-  const {selectDataForm, setSelectDataForm} = dataForm
+export const MovieFilter = ({ setParamsFilter, dataForm }) => {
+  const { selectDataForm, setSelectDataForm } = dataForm
   const { genres } = useGenre();
   const { register, handleSubmit, setValue } = useForm();
+
+
 
   useEffect(() => {
     setValue('with_genres', selectDataForm.with_genres);
     setValue('primary_release_year', selectDataForm.primary_release_year);
 
     handleSearchForm(selectDataForm);
-  }, [selectDataForm, setValue ]);
+  }, [selectDataForm, setValue]);
 
   const handleSearchForm = (data) => {
     for (const [key, val] of Object.entries(data)) {
@@ -29,7 +32,7 @@ export const MovieFilter = ({setParamsFilter, dataForm}) => {
         delete data[key]
       }
     }
-    setParamsFilter({...data})
+    setParamsFilter({ ...data })
   };
 
   return (
@@ -51,13 +54,19 @@ export const MovieFilter = ({setParamsFilter, dataForm}) => {
                   <SelectFilter
                     options={genres}
                     register={register}
-                    onSelect={(value) => setSelectDataForm((prevState) => ({ ...prevState, with_genres: value }))}
+                    onSelect={(value) => {
+                      setSelectDataForm((prevState) => ({ ...prevState, with_genres: value }))
+                      
+                    }
+
+                    }
                   />
                   <SelectFilter
                     options={arrYears()}
                     register={register}
                     onSelect={(value) =>
                       setSelectDataForm((prevState) => ({ ...prevState, primary_release_year: value }))
+
                     }
                   />
                 </div>
@@ -72,7 +81,7 @@ export const MovieFilter = ({setParamsFilter, dataForm}) => {
 
 
 function arrYears(currentYear = new Date().getFullYear()) {
-    const years = Array.from({ length: currentYear - 1970 + 1 }, (_, index) => 1970 + index);
-    return years.map((item) => ({ id: item, name: item })).reverse();
+  const years = Array.from({ length: currentYear - 1970 + 1 }, (_, index) => 1970 + index);
+  return years.map((item) => ({ id: item, name: item })).reverse();
 }
 
