@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom';
 import './Navbar.scss';
 
 const navbarLinks = {
-    todos: "todos",
-    albums: "albums",
+    posts: "posts",
     comments: "comments",
+    cars: 'cars'
 }
 
 export function Navbar() {
@@ -16,18 +16,9 @@ export function Navbar() {
                 <li className='header_nav__item'>
                     <NavLink
                         className="item-nav__link"
-                        to={navbarLinks.todos}
+                        to={navbarLinks.posts}
                     >
-                        todos
-                        <span className='span'></span>
-                    </NavLink>
-                </li>
-                <li className='header_nav__item'>
-                    <NavLink
-                        className="item-nav__link"
-                        to={navbarLinks.albums}
-                    >
-                        albums
+                        posts
                         <span className='span'></span>
                     </NavLink>
                 </li>
@@ -37,6 +28,15 @@ export function Navbar() {
                         to={navbarLinks.comments}
                     >
                         comments
+                        <span className='span'></span>
+                    </NavLink>
+                </li>
+                <li className='header_nav__item'>
+                    <NavLink
+                        className="item-nav__link"
+                        to={navbarLinks.cars}
+                    >
+                        cars
                         <span className='span'></span>
                     </NavLink>
                 </li>

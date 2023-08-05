@@ -1,8 +1,8 @@
-import { Navigate, createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 
 import { ROUTES } from "./routes";
 import { MainLayout } from './layots'
-import { NotFoundPage, PostPage, CommentsPage } from "./pages";
+import { NotFoundPage, CarsPage, CommentsPage, PostsPage } from "./pages";
 
 export const router = createBrowserRouter([
     {
@@ -11,18 +11,16 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Navigate to={ROUTES.TODOS} />
+                path: ROUTES.POSTS,
+                element: <PostsPage />,
             },
             {
                 path: ROUTES.COMMENTS,
                 element: <CommentsPage />,
-                children: [
-                    {
-                        path: ROUTES.POST_ID,
-                        element: <PostPage />
-                    }
-
-                ]
+            },
+            {
+                path: ROUTES.CARS,
+                element: <CarsPage />,
             },
         ]
     },

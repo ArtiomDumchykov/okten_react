@@ -2,8 +2,8 @@ import { urls } from "../constans";
 import { instanceAxiosJsonPL } from "./apiServiceJsonPlaceholder";
 
 const commentsEnpoints = {
-    comments: urls.comments,
-    commentsId: (id) => urls.comments + `/${id}`
+    comments: urls.jsonPL.comments,
+    commentsId: (id) => urls.jsonPL.comments + `/${id}`
 }
 
 export const commentsService = {

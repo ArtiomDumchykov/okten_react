@@ -17,7 +17,7 @@ export class Comments extends Component {
     async componentDidMount() {
         try {
             const {data} = await commentsService.getAll_Comments()
-            this.setState(prev => ({...prev, comments: data}))
+            this.setState({comments: data})
         } catch (error) {
             console.log(error);
         }
@@ -25,6 +25,7 @@ export class Comments extends Component {
 
   render() {
     const {comments} = this.state
+    console.log(comments);
     return (
         <>
             {

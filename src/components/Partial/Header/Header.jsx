@@ -1,7 +1,8 @@
 import React from 'react'
-import { Navbar } from '../'
+
 
 import "./Header.scss"
+import { Navbar } from '../../Navbar/Navbar'
 
 export function Header() {
     return (
