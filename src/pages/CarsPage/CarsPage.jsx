@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Cars } from '../../components'
 
 export  class CarsPage extends Component {
   render() {
@@ -9,7 +10,7 @@ export  class CarsPage extends Component {
                 <h2 className='cars__title'>Cars</h2>
             </div>
             <div className="cars__content_wrap">
-                   
+                   <Cars/>
             </div>
         </div>
     </div>

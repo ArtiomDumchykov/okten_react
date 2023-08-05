@@ -13,7 +13,7 @@ export class Cars extends Component {
     async componentDidMount() {
         try {
             const {data} = await carsService.getAll()
-            console.log(data);
+            this.setState(prev => ({...prev, cars: data}))
         } catch (error) {
             console.log(error);
         }
@@ -26,7 +26,7 @@ export class Cars extends Component {
             !!cars?.length 
             ? (
                 <ul className='comments__list'>
-                    {[...cars].map(item => <Car comment={item} key={`${item.postId}_${item.id}`}/>)}
+                    {[...cars].map(item => <Car car={item} key={item.id}/>)}
                 </ul>
             )
             : <div>not comments</div>
