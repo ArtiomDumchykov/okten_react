@@ -1,27 +1,24 @@
-import React, {useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { getSearchParams } from '../../utils';
 import { movieService } from '../../services';
 import { MovieFilter, MoviesLists } from '../../components';
+import { useFilterForm } from '../../hooks';
 
 export function MoviesPage() {
 
     let params = useParams();
-    console.log("PARAMS", params);
+    const [searchParams, setSearchParams] = useState({...params, ...getSearchParams(params)})
 
-    // const [selectDataForm, setSelectDataForm] = useState({...searchParams});
-    // const [paramsFilter, setParamsFilter] = useState({ ...params, ...selectDataForm, })
-
-    const [paramsFilter, setParamsFilter] = useState({ ...params,  ...getSearchParams(params) })
+    // const {} = useFilterForm({params, getSearchParams})
 
     return (
         <>
-            {/* MoviesFilter work not right */}
-            {/* <MovieFilter setParamsFilter={setParamsFilter} dataForm={{ selectDataForm, setSelectDataForm }} /> */}
-            {/* <MoviesLists callback={movieService.getAll} params={{ ...paramsFilter, ...selectDataForm, ...searchParams }} /> */}
 
-            <MoviesLists callback={movieService.getAll} params={{ ...paramsFilter}} />
+            {/* <MovieFilter dataForm={{ register, handleSubmit, setSearchParams, handleSearchForm,  setSearchParams}} /> */}
+            <MoviesLists callback={movieService.getAll} params={{ ...searchParams }} />
         </>
     );
 }
+
