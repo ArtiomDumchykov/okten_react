@@ -1,19 +1,43 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 import './Comments.scss';
 
+import { commentsService } from '../../services';
 import { Comment } from './Comment/Comment';
-import { useComments } from '../../hooks';
 
-export function Comments() {
+export class Comments extends Component {
 
-    const { comments, setcomments } = useComments()
+    constructor(props) {
+        super(props);
+        this.state = {
+            comments: []
+        }
+    }
 
+    async componentDidMount() {
+        try {
+            const {data} = await commentsService.getAll_Comments()
+            this.setState(prev => ({...prev, comments: data}))
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+  render() {
+    const {comments} = this.state
     return (
-        <ul className='comments__list'>
+        <>
             {
-                !!comments?.length && [...comments].map(item => <Comment comment={item} key={`${item.postId}_${item.id}`} />)
+                !!comments?.length 
+                ? (
+                    <ul className='comments__list'>
+                        {[...comments].map(item => <Comment comment={item} key={`${item.postId}_${item.id}`}/>)}
+                    </ul>
+                )
+                : <div>not comments</div>
             }
-        </ul>
+        </>
     )
+  }
 }
+

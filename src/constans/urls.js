@@ -1,24 +1,26 @@
-// export const BASE_URLS = {
-//     cars_url: 'http://owu.linkpc.net/carsAPI/v1',
-//     jsonplaceholder_url: "https://jsonplaceholder.typicode.com",
-//     spacex_url: 'https://api.spacexdata.com/v3'
-// } 
 
-const baseURL = 'https://jsonplaceholder.typicode.com';
 
-const todos = '/todos'
-const albums = '/albums'
-const comments = '/comments'
-const posts = '/posts'
+const jsonBaseURL = 'https://jsonplaceholder.typicode.com';
+const owuBaseURl = 'http://owu.linkpc.net/carsAPI/v1'
+
+
+const posts = '/posts';
+const comments = '/comments';
+
+const cars = '/cars'
 
 const urls = {
-    todos,
-    albums,
-    comments,
-    posts
+    jsonPL: {
+        posts,
+        comments
+    },
+    cars: {
+        cars
+    }
 }
 
 export {
-    baseURL,
+    jsonBaseURL,
+    owuBaseURl,
     urls
 }

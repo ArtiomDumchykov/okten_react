@@ -2,7 +2,7 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import { ROUTES } from "./routes";
 import { MainLayout } from './layots'
-import { NotFoundPage, TodosPage, AlbumsPage, PostPage, CommentsPage } from "./pages";
+import { NotFoundPage, PostPage, CommentsPage } from "./pages";
 
 export const router = createBrowserRouter([
     {
@@ -12,14 +12,6 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <Navigate to={ROUTES.TODOS} />
-            },
-            {
-                path: ROUTES.TODOS,
-                element: <TodosPage />
-            },
-            {
-                path: ROUTES.ALBUMS,
-                element: <AlbumsPage />
             },
             {
                 path: ROUTES.COMMENTS,

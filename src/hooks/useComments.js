@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { commentsService } from "../setvices";
+import { commentsService } from "../services";
 
 export const useComments = () => {
     const [comments, setcomments] = useState([]);
