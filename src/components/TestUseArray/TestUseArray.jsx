@@ -40,7 +40,7 @@ export const TestUseArray = () => {
         </div>
         <ul>
             {
-                !!data?.length && [...data].map((todo, index) => <li onClick={() => handleRemoveTodos(todo.id)} key={index + "_" + todo.id}>{todo.text}</li>)
+                !!data?.length && [...data].map((todo, index) => <li data-key={index + "_" + todo.id} onClick={() => handleRemoveTodos(todo.id)} key={index + "_" + todo.id}>{todo.text}</li>)
             }
         </ul>
     </div>
