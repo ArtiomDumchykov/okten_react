@@ -1,0 +1,14 @@
+.post__item {
+    border: 1px solid black;
+    padding: 5px 10px;
+    width: 500px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    & > p {
+        text-indent: 10px;;
+    }
+}
+
