@@ -1,8 +1,8 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import { ROUTES } from "./routes";
-import { MainLayout } from './layots'
-import { NotFoundPage, Part_1} from "./pages";
+import { MainLayout, RickMortyLayout } from './layots'
+import { CarsPage, CharactersPage, EpisodesPage, NotFoundPage, } from "./pages";
 
 export const router = createBrowserRouter([
     {
@@ -11,8 +11,31 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                path: ROUTES.PART_1,
-                element: <Part_1/>
+                element: <Navigate to={ROUTES.RICKMORTY}/>
+            },
+            {
+                path: ROUTES.RICKMORTY,
+                element: <RickMortyLayout/>,
+                children: [
+                    {
+                        index: true,
+                        element: <Navigate to={ROUTES.RICKMORTY_EPISODES}/>
+                    },
+                    {
+                        path: ROUTES.RICKMORTY_EPISODES,
+                        element: <EpisodesPage/>
+                    },
+                    {
+                        path: ROUTES.RICKMORTY_CHARACTERS,
+                        element: <CharactersPage />
+                    },
+
+
+                ]
+            },
+            {
+                path: ROUTES.CARS,
+                element: <CarsPage/>
             },
         ]
     },

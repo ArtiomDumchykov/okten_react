@@ -1,26 +1,27 @@
 
-
-const jsonBaseURL = 'https://jsonplaceholder.typicode.com';
+const rickmortyURL = "https://rickandmortyapi.com/api"
 const owuBaseURl = 'http://owu.linkpc.net/carsAPI/v1'
 
-
-const posts = '/posts';
-const comments = '/comments';
+const episodes = '/episode'
+const characters = '/character'
 
 const cars = '/cars'
 
 const urls = {
-    jsonPL: {
-        posts,
-        comments
+    rickmorty: {
+        episodes,
+        characters: {
+            byId: (id) => `${characters}/${id}`
+        } 
     },
     cars: {
-        cars
+        base: cars,
+        byId: (id) => `${cars}/${id}`
     }
 }
 
 export {
-    jsonBaseURL,
+    rickmortyURL,
     owuBaseURl,
     urls
 }

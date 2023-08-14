@@ -1,8 +1,15 @@
 const MAIN = '/';
-const PART_1 = 'part_1';
 
+const RICKMORTY = 'rickmorty';
+const RICKMORTY_EPISODES = "episodes";
+const RICKMORTY_CHARACTERS = "characters"
+
+const CARS = 'cars'
 
 export const ROUTES = {
     MAIN,
-    PART_1,
+    RICKMORTY,
+    RICKMORTY_EPISODES,
+    RICKMORTY_CHARACTERS,
+    CARS,
 }
