@@ -1,7 +1,7 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 
 import { ROUTES } from "./routes";
-import { CarsLayout, MainLayout, RickMortyLayout } from './layots'
+import { CarsLayout, MainLayout, RickMortyLayout } from './layots';
 import { CarsPage, CharactersPage, EpisodesPage, NotFoundPage, } from "./pages";
 
 export const router = createBrowserRouter([
