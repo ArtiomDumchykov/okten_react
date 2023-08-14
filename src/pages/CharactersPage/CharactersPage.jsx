@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Characters } from '../../components'
+import { Characters } from '../../components';
 import { BackButton } from '../../componentUI';
 
 export const CharactersPage = () => {

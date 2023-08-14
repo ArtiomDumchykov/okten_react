@@ -5,7 +5,7 @@ import { useCharacters } from '../../../hooks';
 
 export const Characters = () => {
 
-    const {characters} = useCharacters()
+    const {characters} = useCharacters();
 
     return (
         <div>

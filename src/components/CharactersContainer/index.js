@@ -1,1 +1,1 @@
-export * from './Characters/Characters.jsx'
+export * from './Characters/Characters.jsx';

@@ -1,11 +1,11 @@
 
-const rickmortyURL = "https://rickandmortyapi.com/api"
-const owuBaseURl = 'http://owu.linkpc.net/carsAPI/v1'
+const rickmortyURL = "https://rickandmortyapi.com/api";
+const owuBaseURl = 'http://owu.linkpc.net/carsAPI/v1';
 
-const episodes = '/episode'
-const characters = '/character'
+const episodes = '/episode';
+const characters = '/character';
 
-const cars = '/cars'
+const cars = '/cars';
 
 const urls = {
     rickmorty: {

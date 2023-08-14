@@ -9,7 +9,6 @@ export const actionsCars = {
 
 }
 
-
 const getCars = () => async (dispatch) => {
     try {
         dispatch(actionsCars.setCarsIsLoading(true))
@@ -19,6 +18,7 @@ const getCars = () => async (dispatch) => {
         dispatch(actionsCars.setCarsError("Something wrong!!!"))
     }
 }
+
 const createCar = (car) => async (dispatch) => {
     try {
         dispatch(actionsCars.setCarsIsLoading(true))
@@ -28,6 +28,7 @@ const createCar = (car) => async (dispatch) => {
         dispatch(actionsCars.setCarsError("Something wrong!!!"))
     }
 }
+
 const updateCar = (id, car) => async (dispatch) => {
     try {
         dispatch(actionsCars.setCarsIsLoading(true))
@@ -38,7 +39,8 @@ const updateCar = (id, car) => async (dispatch) => {
         dispatch(actionsCars.setCarsError("Something wrong!!!"))
     }
 }
-const deleteCars = (id) => async (dispatch) => {
+
+const deleteCar = (id) => async (dispatch) => {
     try {
         dispatch(actionsCars.setCarsIsLoading(true))
         await carsService.deleteById(id);
@@ -48,11 +50,10 @@ const deleteCars = (id) => async (dispatch) => {
     }
 }
 
-
 export const carsActions = {
     getCars,
     createCar,
     updateCar,
-    deleteCars,
+    deleteCar,
     setCarForUpdate: actionsCars.setCarForUpdate
 }

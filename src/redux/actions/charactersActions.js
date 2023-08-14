@@ -7,7 +7,6 @@ export const actionsCharacters = {
     setCharactersIsLoading: (payload) => ({type: charactersActionsTypes.SET_ISLOADING, payload}),
 }
 
-
 const getCharacrets = (id) => async (dispatch) => {
     try {
         dispatch(actionsCharacters.setCharactersIsLoading(true))

@@ -3,9 +3,9 @@ import React from 'react';
 import { useCars } from '../../../hooks';
 import { Car } from '../Car/Car';
 
-export function Cars({ addCar, setAddCar, setCarUpdate }) {
+export function Cars() {
 
-    const { cars } = useCars(addCar)
+    const { cars } = useCars();
 
     return (
         <div>
@@ -20,8 +20,6 @@ export function Cars({ addCar, setAddCar, setCarUpdate }) {
                 {
                     !!cars?.length && [...cars].map(item => 
                         <Car
-                            setAddCar={setAddCar}
-                            setCarUpdate={setCarUpdate}
                             car={item}
                             key={item.id}
                         />

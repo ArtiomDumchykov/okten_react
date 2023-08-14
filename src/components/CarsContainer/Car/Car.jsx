@@ -1,70 +1,75 @@
 import React from 'react'
-import { carsService } from '../../../services';
+import { useDispatch } from 'react-redux';
 
-export  function Car({car, setAddCar, setCarUpdate}) {
-    const {id, brand, price, year} = car;
+import { carsActions } from '../../../redux';
 
+export function Car({ car }) {
 
-    const deleteCar = async() => {
-        try {
-            if (!window.confirm("Delete car?")) {
-                return
-            } else {
-                const response = await carsService.deleteCar(id);
-                setAddCar(prev => !prev)
-            }
-        } catch (error) {
-            console.log(error);
+    const dispatch = useDispatch();
+
+    const { id, brand, price, year } = car;
+
+    const handleUpdateCar = (car) => {
+        dispatch(carsActions.setCarForUpdate(car))
+    }
+
+    const handleDeleteCar = (id) => {
+        if (!window.confirm("Delete car?")) {
+            return
+        } else {
+            dispatch(carsActions.deleteCar(id))
         }
     }
-  return (
-    <li
-        style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "7px",
-            border: "1px solid black",
-            padding: "10px 15px",
-            width: '400px'
-        }}
-    >
-        <div
+
+    return (
+        <li
             style={{
                 display: "flex",
                 flexDirection: "column",
-                gap: "5px"
+                gap: "7px",
+                border: "1px solid black",
+                padding: "10px 15px",
+                width: '400px'
             }}
         >
-            <div>id: {id}</div>
-            <div>brand: {brand}</div>
-            <div>price: {price}</div>
-            <div>year: {year}</div>
-        </div>
-        <div 
-            style={{
-                display: "flex",
-                gap: "10px"
-            }}
-        >
-            <button
+            <div
                 style={{
-                    padding: "7px 15px",
-                    border: "1px solid black"
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "5px"
                 }}
-                onClick={() => setCarUpdate(car)}
             >
-                update
-            </button>
-            <button 
+                <div>id: {id}</div>
+                <div>brand: {brand}</div>
+                <div>price: {price}</div>
+                <div>year: {year}</div>
+            </div>
+            <div
                 style={{
-                    padding: "7px 15px",
-                    border: "1px solid black"
+                    display: "flex",
+                    gap: "10px"
                 }}
-                onClick={deleteCar}
             >
-                delete
-            </button>
-        </div>
-    </li>
-  )
+                <button
+                    style={{
+                        padding: "7px 15px",
+                        border: "1px solid black"
+                    }}
+                    // onClick={() => setCarUpdate(car)}
+                    onClick={() => handleUpdateCar(car)}
+                >
+                    update
+                </button>
+                <button
+                    style={{
+                        padding: "7px 15px",
+                        border: "1px solid black"
+                    }}
+                    onClick={() => handleDeleteCar(id)}
+                >
+                    delete
+                </button>
+            </div>
+        </li>
+    )
 }

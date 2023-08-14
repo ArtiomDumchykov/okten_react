@@ -9,7 +9,6 @@ export const actionsEpisodes = {
 
 }
 
-
 const getEpisodes = (page) => async (dispatch) => {
     try {
         dispatch(actionsEpisodes.setEpisodesIsLoading(true))

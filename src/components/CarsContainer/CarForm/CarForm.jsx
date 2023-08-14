@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { carsActions } from '../../../redux';
+
 import { useForm } from 'react-hook-form';
-import {joiResolver} from '@hookform/resolvers/joi';
-
+import { joiResolver } from '@hookform/resolvers/joi';
 import { carValidator } from '../../../validators';
-import { carsService } from '../../../services';
 
-
-export const CarForm = ({setAddCar, carUpdate, setCarUpdate, ...rest}) => {
+export const CarForm = () => {
+    const dispatch = useDispatch();
+    const { carForUpdate } = useSelector(store => store.cars)
 
     const { register, handleSubmit, reset, formState: { errors, isValid }, setValue } = useForm({
         mode: "all",
@@ -14,44 +16,30 @@ export const CarForm = ({setAddCar, carUpdate, setCarUpdate, ...rest}) => {
     })
 
     useEffect(() => {
-        if (carUpdate) {
-            setValue("brand", carUpdate.brand, {shouldValidate: true})
-            setValue("price", carUpdate.price, {shouldValidate: true})
-            setValue("year", carUpdate.year, {shouldValidate: true})
+        if (carForUpdate) {
+            setValue("brand", carForUpdate.brand, { shouldValidate: true });
+            setValue("price", carForUpdate.price, { shouldValidate: true });
+            setValue("year", carForUpdate.year, { shouldValidate: true });
         }
-    }, [carUpdate])
+    }, [carForUpdate])
 
-    const add = async (data) => {
-        console.log(data);
-        try {
-            const response = await carsService.createCar(data);
-            console.log(response);
-            setAddCar(prev => !prev);
-            reset()
-            
-        } catch (error) {
-            console.log(error);
-        }
+    const add = async (car) => {
+        dispatch(carsActions.createCar(car));
+        reset()
     }
 
-    const update = async(data) => {
-        try {
-            await carsService.updateCar(carUpdate.id, data)
-            setAddCar(prev => !prev);
-            setCarUpdate(null);
-            reset()
-        } catch (error) {
-            console.log(error);
-        }
+    const update = async (car) => {
+        dispatch(carsActions.updateCar(carForUpdate.id, car));
+        reset()
     }
 
     return (
         <div className="form-wrap">
-            <form 
+            <form
                 className="form"
-                onSubmit={handleSubmit(!carUpdate ? add : update)}
+                onSubmit={handleSubmit(!carForUpdate ? add : update)}
             >
-                <div 
+                <div
                     style={{
                         display: "flex",
                         flexDirection: "column",
@@ -65,7 +53,7 @@ export const CarForm = ({setAddCar, carUpdate, setCarUpdate, ...rest}) => {
                                 style={{
                                     display: "flex",
                                     gap: "10px"
-                                }} 
+                                }}
                                 htmlFor="brand" className='label-wrap'>
                                 <span className="label-text">brand</span>
                                 <input
@@ -83,7 +71,7 @@ export const CarForm = ({setAddCar, carUpdate, setCarUpdate, ...rest}) => {
                                 style={{
                                     display: "flex",
                                     gap: "10px"
-                                }} 
+                                }}
                                 htmlFor="price" className='label-wrap'>
                                 <span className="label-text">price</span>
                                 <input
@@ -103,7 +91,7 @@ export const CarForm = ({setAddCar, carUpdate, setCarUpdate, ...rest}) => {
                                 style={{
                                     display: "flex",
                                     gap: "10px"
-                                }} 
+                                }}
                                 htmlFor="brand" className='label-wrap'>
                                 <span className="label-text">year</span>
                                 <input
@@ -120,16 +108,16 @@ export const CarForm = ({setAddCar, carUpdate, setCarUpdate, ...rest}) => {
                         </div>
                     </div>
                     <div className="submit-wrap-btn">
-                        <button 
-                        style={{
-                            padding: "7px 15px",
-                            border: "1px solid black"
-                        }}
-                            type='submit' 
+                        <button
+                            style={{
+                                padding: "7px 15px",
+                                border: "1px solid black"
+                            }}
+                            type='submit'
                             className='submit-btn'
                             disabled={!isValid}
                         >
-                            {!carUpdate ? "add" : "update"}
+                            {!carForUpdate ? "add" : "update"}
                         </button>
                     </div>
                 </div>
