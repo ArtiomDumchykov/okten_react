@@ -1,13 +1,12 @@
-import axios from "axios";
+import { BASE_URLS } from '../constans/urls';
 
-import { utilsURLS } from "../constans";
+export class RequestService {
 
-export class RequestServer {
-    static urls = utilsURLS;
+    baseURLS = BASE_URLS
 
     constructor() {
-        if (new.target === RequestServer) {
-            throw new Error('RequestServer  cannot be directly instantiated')
+        if (new.target === RequestService) {
+            throw new Error('RequestService  cannot be directly instantiated')
         }
 
         // if (this instanceof RequestServer) {
@@ -15,34 +14,18 @@ export class RequestServer {
         // }
     }
 
-    static async getAxiosData(url, method = "get") {
-        try {
-            const response = await axios[method](url);
-            return response
-        } catch (error) {
-            console.log(error)
-        }
+
+    // static instanceAxios = axios.create({baseURL})
+
+    // static axiosRequest(config) {
+    //     return RequestService.instanceAxios(config)
+    // }
+
+    axiosInstance() {
+        throw new Error("Create instanse")
     }
 
-    static getURL(urlKey) {
-        const urlFunction = RequestServer.urls[urlKey + "URL"]
-
-        if (typeof urlFunction === "function") {
-            return urlFunction.call(RequestServer.urls);
-        }
-
-        throw new Error(`Invalid URL key: ${urlKey}`);
-    }
-
-    #createUrl() {
-        throw new Error("Create base URL")
-    }
-
-    #getData() {
-        throw new Error("Create data")
+    axiosRequest() {
+        throw new Error("Create axios request")
     }
 }
-
-
-
-
