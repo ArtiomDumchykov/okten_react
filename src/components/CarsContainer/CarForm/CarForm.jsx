@@ -21,7 +21,7 @@ export const CarForm = () => {
             setValue("price", carForUpdate.price, { shouldValidate: true });
             setValue("year", carForUpdate.year, { shouldValidate: true });
         }
-    }, [carForUpdate])
+    }, [carForUpdate, setValue])
 
     const add = async (car) => {
         dispatch(carsActions.createCar(car));
