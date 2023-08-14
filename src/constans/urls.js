@@ -1,4 +1,3 @@
-
 const rickmortyURL = "https://rickandmortyapi.com/api";
 const owuBaseURl = 'http://owu.linkpc.net/carsAPI/v1';
 
