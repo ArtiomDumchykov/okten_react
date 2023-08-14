@@ -2,11 +2,12 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunk from "redux-thunk";
 import {logger} from "redux-logger/src";
-import { charactersReducer, episodesReducer } from "../redusers";
+import { charactersReducer, episodesReducer, carsReduser } from "../redusers";
 
 const rootReducer = combineReducers({
     episodes: episodesReducer,
     characters: charactersReducer,
+    cars: carsReduser
 })
 
 

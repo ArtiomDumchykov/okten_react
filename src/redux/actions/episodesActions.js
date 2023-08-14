@@ -6,6 +6,7 @@ export const actionsEpisodes = {
     setAddEpisodes: (payload) => ({type: episodesActionsTypes.SET_ADD_EPISODES, payload}),
     setEpisodesError: (payload) => ({type: episodesActionsTypes.SET_ERROR, payload}),
     setEpisodesIsLoading: (payload) => ({type: episodesActionsTypes.SET_ISLOADING, payload}),
+
 }
 
 
