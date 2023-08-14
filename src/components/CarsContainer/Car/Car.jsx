@@ -17,7 +17,7 @@ export function Car({ car }) {
         if (!window.confirm("Delete car?")) {
             return
         } else {
-            dispatch(carsActions.deleteCar(id))
+            dispatch(carsActions.deleteCar(id));
         }
     }
 
