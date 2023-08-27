@@ -6,7 +6,6 @@ import css from './Header.module.css';
 export const EpisodesHeader = () => {
     const {isLoading} = useSelector(state => state.progress); 
     const {current} = useSelector(state => state.episodes);
-    console.log("ISLOADING", isLoading)
     return (
         <div style={{padding: "0 0 20px "}}>
             <div className={css.label}>{current ? current : 'The Rick and Morty'}</div>
