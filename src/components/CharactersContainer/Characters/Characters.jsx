@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './Characters.scss';
+
 import { Character } from '../Character/Character';
 import { useCharacters } from '../../../hooks';
 
@@ -9,7 +11,10 @@ export const Characters = () => {
 
     return (
         <div>
-            <ul className="characters__list">
+            <ul 
+                className="characters__list"
+            
+            >
                 {
                     !!characters?.length && [...characters].map(item => <Character character={item} key={item.id} />)
                 }
