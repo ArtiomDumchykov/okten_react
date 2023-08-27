@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.1.1",
+    "@mui/material": "^5.14.6",
     "@redux-devtools/extension": "^3.2.5",
+    "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -27,6 +31,7 @@
     "redux-logger": "^3.0.6",
     "redux-saga": "^1.2.3",
     "redux-thunk": "^2.4.2",
+    "styled-components": "^6.0.7",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
