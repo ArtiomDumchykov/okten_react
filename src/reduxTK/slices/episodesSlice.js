@@ -32,7 +32,9 @@ const slice = createSlice({
     name: "episodesSlice",
     initialState,
     reducers: {
-
+        setCurrent: (state, action) => {
+            state.current = action.payload
+        }
     },
     extraReducers: (builder) => builder
         .addCase(getAll.fulfilled, (state, action) => {

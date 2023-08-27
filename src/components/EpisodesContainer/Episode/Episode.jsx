@@ -1,13 +1,18 @@
 import {Box, Button, Card, CardActions, CardContent, Typography} from "@mui/material";
 import React from 'react'
+import { useDispatch } from "react-redux";
 import { useNavigate } from 'react-router-dom';
+import { episodesActions } from "../../../reduxTK/";
 
 export const Episode = ({ episode }) => {
     const { id: episodesId, air_date, name, episode: episodeName, characters } = episode;
     const navigate = useNavigate();
 
+    const dispatch = useDispatch()
+
     const toCharacters = () => {
         const ids = characters.map(character => character.split('/').slice(-1)[0]).join(',');
+        dispatch(episodesActions.setCurrent(name))
         navigate('/rickmorty/characters', { state: { ids } })
     }
 
