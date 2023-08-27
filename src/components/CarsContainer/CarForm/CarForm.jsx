@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { carsActions } from '../../../redux';
+import { carsActions } from '../../../reduxTK';
 
 import { useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
@@ -24,12 +24,12 @@ export const CarForm = () => {
     }, [carForUpdate, setValue])
 
     const add = async (car) => {
-        dispatch(carsActions.createCar(car));
+        dispatch(carsActions.createCar({car}));
         reset()
     }
 
     const update = async (car) => {
-        dispatch(carsActions.updateCar(carForUpdate.id, car));
+        dispatch(carsActions.updateCar({id: carForUpdate.id, car}));
         reset()
     }
 

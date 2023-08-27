@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 
-import { carsActions } from '../../../redux';
+import { carsActions } from '../../../reduxTK';
 
 export function Car({ car }) {
 
@@ -17,7 +17,7 @@ export function Car({ car }) {
         if (!window.confirm("Delete car?")) {
             return
         } else {
-            dispatch(carsActions.deleteCar(id));
+            dispatch(carsActions.deleteCar({id}));
         }
     }
 
