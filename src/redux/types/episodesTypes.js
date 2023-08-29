@@ -1,7 +1,0 @@
-export const episodesActionsTypes = {
-    SET_EPISODES: "SET_EPISODES",
-    SET_ADD_EPISODES: "SET_ADD_EPISODES",
-    SET_ERROR: "SET_ERROR",
-    SET_ISLOADING: "SET_ISLOADING",
-
-}
