@@ -1,0 +1,33 @@
+@import '../../../styles/utils/var.scss'; 
+
+.cars__item {
+    border: 1px solid black;
+    padding: 7px 10px;
+}
+
+.cars__brand-text {
+    font-size: 18px;
+}
+
+.cars_actions {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px
+}
+
+.actions-btn-wrap {
+
+}
+
+.action__btn {
+
+    outline: 1px solid black;
+    padding: 3px 5px;
+    transition: $transition;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #a5a5a5;
+        transition: $transition;
+    }
+}
