@@ -1,21 +1,23 @@
-import React, { Dispatch, FC, PropsWithChildren, SetStateAction } from 'react'
+import React, {FC, PropsWithChildren,} from 'react'
 
 import './Car.scss';
-
-import { ICar } from '../../../intefaces'
-import { carsService } from '../../../services';
 import { useNavigate } from 'react-router-dom';
 
+import { ICar } from '../../../intefaces'
+import { useAppDispatch } from '../../../hooks';
+import { carsActions } from '../../../reduxRTK/slices';
+
+
 interface IProps extends PropsWithChildren {
-    car: ICar,
-    setTriggerCar: Dispatch<SetStateAction<boolean>>,
-    setCarForUpdate: Dispatch<SetStateAction<ICar>>,
-    
+    car: ICar,   
 }
 
-export const Car: FC<IProps> = ({ car, setTriggerCar, setCarForUpdate }) => {
+export const Car: FC<IProps> = ({ car } ) => {
+
+    const dispatch = useAppDispatch()
     
     const navigate = useNavigate()
+
     
     const { id, brand } = car
 
@@ -23,16 +25,15 @@ export const Car: FC<IProps> = ({ car, setTriggerCar, setCarForUpdate }) => {
         navigate(`${id}`, {state: car})
     }
 
-    const handleUpdatecar = () => {
-        setCarForUpdate(car)
+    const handleUpdateCar = () => {
+        dispatch(carsActions.setCarForUpdate({car}))
     }
 
     const handleDeleteCar = async () => {
         if (!window.confirm(`Delete car id: ${id}`)) {
             return
         } else {
-            await carsService.deleteById(id);
-            setTriggerCar(prev => !prev);
+            await dispatch(carsActions.deleteCar({id}))
         }
     }
 
@@ -44,7 +45,7 @@ export const Car: FC<IProps> = ({ car, setTriggerCar, setCarForUpdate }) => {
                 <div className="actions-btn-wrap">
                     <button
                         className="action__btn update-btn"
-                         onClick={handleUpdatecar}
+                         onClick={handleUpdateCar}
                     >
                         update
                     </button>

@@ -1,25 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "./redux_Hooks";
+import { carsActions } from "../reduxRTK/slices";
 
-import { ICar } from "../intefaces";
-import { AxiosError } from "axios";
-import { carsService } from "../services";
 
-export const useCars = (triggerCar: boolean) => {
-    const [cars, setCars] = useState<ICar[]>([]); 
 
+export const useCars = () => {
+    const dispatch = useAppDispatch()
+    const {cars} = useAppSelector(state => state.cars)
+    
     useEffect(() => {
-        (async() => {
-            try {
-                const { data } = await carsService.getAll();
-                setCars(data);
-            } catch (error) {
-                const err = error as AxiosError
-               console.log(err.response.data)
-            }
-        })()
-    }, [triggerCar])
+        dispatch(carsActions.getAll())
+    }, [dispatch])
 
-    return {
-        cars, setCars
-    }
+   return {
+    cars
+   }
 }

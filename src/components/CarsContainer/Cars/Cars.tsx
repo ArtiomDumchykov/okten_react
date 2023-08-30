@@ -1,17 +1,18 @@
-import React, { Dispatch, FC, PropsWithChildren, SetStateAction } from 'react';
+import React, { FC, PropsWithChildren, } from 'react';
 
 import './Cars.scss';
 
+import { useCars } from '../../../hooks';
 import { Car } from '../Car/Car';
-import { ICar } from '../../../intefaces';
 
 interface IProps extends PropsWithChildren {
-    cars: ICar[],
-    setTriggerCar: Dispatch<SetStateAction<boolean>>
-    setCarForUpdate: Dispatch<SetStateAction<ICar>>
+
 }
 
-export const Cars:FC<IProps> = ({cars, setTriggerCar, setCarForUpdate}) => {
+export const Cars:FC<IProps> = () => {
+
+   const { cars } =useCars()
+
     return (
         <div>
             <ul className="cars__list">
@@ -20,8 +21,6 @@ export const Cars:FC<IProps> = ({cars, setTriggerCar, setCarForUpdate}) => {
                         <Car 
                             car={car} 
                             key={car.id}
-                            setTriggerCar={setTriggerCar}
-                            setCarForUpdate={setCarForUpdate}
                         />
                     )
                 }

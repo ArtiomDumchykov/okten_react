@@ -1,32 +1,33 @@
 import React, { Dispatch, FC, PropsWithChildren, SetStateAction, useEffect } from 'react'
 import { AxiosError } from 'axios';
+
 import {SubmitHandler, useForm} from 'react-hook-form';
 import {joiResolver} from '@hookform/resolvers/joi';
 
 import './CarsForm.scss';
 
 import { ICar } from '../../../intefaces';
-import { carsService } from '../../../services';
+import { useCarsFrom } from '../../../hooks';
 import { carValidator } from '../../../validators';
+import { carsActions } from '../../../reduxRTK/slices';
 
 import { Button } from '../../Button/Button';
-
 interface IProps extends PropsWithChildren {
-    carForUpdate: ICar,
-    setTriggerCar: Dispatch<SetStateAction<boolean>>
-    setCarForUpdate: Dispatch<SetStateAction<ICar>>
+
 }
 
-export const CarsForm: FC<IProps> = ({carForUpdate,setCarForUpdate, setTriggerCar}) => {
+export const CarsForm: FC<IProps> = () => {
 
     const {register, reset, handleSubmit, setValue, formState: {errors, isValid}} = useForm<ICar>({
         mode: "all",
         resolver: joiResolver(carValidator)
     })
 
+    const {carForUpdate, dispatch} = useCarsFrom();
+
 
     useEffect(() => {
-        console.log(carForUpdate)
+ 
         if (carForUpdate) {
             setValue('brand', carForUpdate.brand)
             setValue('price', carForUpdate.price)
@@ -37,8 +38,7 @@ export const CarsForm: FC<IProps> = ({carForUpdate,setCarForUpdate, setTriggerCa
 
     const add: SubmitHandler<ICar> = async (car) => {
         try {
-            await carsService.create(car)
-            setTriggerCar(prev => !prev);
+            await dispatch(carsActions.create({car}))
             reset();
         } catch (error) {
             const err = error as AxiosError;
@@ -47,9 +47,8 @@ export const CarsForm: FC<IProps> = ({carForUpdate,setCarForUpdate, setTriggerCa
     } 
     const update: SubmitHandler<ICar> = async (car) => {
         try {
-            await carsService.update(carForUpdate.id, car);
-            setCarForUpdate(null);
-            setTriggerCar(prev => !prev);
+         
+            await dispatch(carsActions.update({id: carForUpdate.id, car}))
             reset();
         } catch (error) {
             const err = error as AxiosError;

@@ -1,16 +1,17 @@
 import React from 'react';
-import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 
 import './CarsLayout.scss'
 
 import { ICar } from '../../intefaces';
+import { useAppLocation } from '../../hooks';
 
 type IContextType = {
     car: ICar | null
 }
 
 export const CarsLayout = () => {
-    const {state: car} = useLocation()
+    const {state: car} = useAppLocation<ICar>()
     // console.log(car)
 
     // const params = useParams()
