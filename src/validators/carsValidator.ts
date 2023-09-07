@@ -1,6 +1,4 @@
 import Joi from 'joi';
-
-
 interface ICarValidator {
     brand: string;
     price: number;

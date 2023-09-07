@@ -3,7 +3,7 @@ import { Navigate, createBrowserRouter } from "react-router-dom";
 import { ROUTES } from "./routes";
 
 import { CarsLayout, MainLayout } from "./layouts";
-import { CarsInfoPage, CarsPage, NotFoundPage } from "./pages";
+import { CarsInfoPage, CarsPage, LoginPage, NotFoundPage, RegisterPage } from "./pages";
 
 export const router = createBrowserRouter([
     {
@@ -27,8 +27,15 @@ export const router = createBrowserRouter([
                         element: <CarsInfoPage/>
                     }
                 ]
-                
-            }
+            },
+            {
+                path: ROUTES.AUTH_LOGIN,
+                element: <LoginPage/>
+            },
+            {
+                path: ROUTES.AUTH_REGISTER,
+                element: <RegisterPage/>
+            },
         ]
     },
     {

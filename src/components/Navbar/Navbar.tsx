@@ -3,8 +3,12 @@ import {NavLink} from 'react-router-dom';
 
 import './Navbar.scss';
 
-const navbarLinks = {
-    cars: "cars"
+interface INavbarLinks {
+    [K: string]: string
+}
+
+const navbarLinks:INavbarLinks = {
+    cars: "cars",
 }
 
 export const Navbar: FC = () => {
