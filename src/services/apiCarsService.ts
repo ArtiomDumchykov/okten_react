@@ -15,7 +15,7 @@ instanseCarsaxios.interceptors.request.use(req => {
         req.headers.Authorization = `Bearer ${access}`
     }
 
-    return req
+    return req;
 })
 
 type IWaitList = () => void
