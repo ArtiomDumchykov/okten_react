@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
+import { NavLink } from 'react-router-dom';
 
 import './Header.scss';
 
-import { Navbar } from '../../Navbar/Navbar';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { authSerivice } from '../../../services';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { authActions } from '../../../reduxRTK/slices';
-import { Link } from 'react-router-dom';
+
+import { Navbar } from '../../Navbar/Navbar';
 
 export const Header: FC = () => {
 
@@ -30,8 +31,8 @@ export const Header: FC = () => {
                             </>
                         :
                             <div>
-                                <Link to={'/auth/login'}>Login</Link>
-                                <Link to={'/auth/register'}>Register</Link>
+                                <NavLink  className="item-nav__link" to={'/auth/login'}>Login</NavLink>
+                                <NavLink  className="item-nav__link" to={'/auth/register'}>Register</NavLink>
                             </div>
                 }
                     

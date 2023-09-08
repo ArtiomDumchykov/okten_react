@@ -1,25 +1,22 @@
-import React, {FC, PropsWithChildren,} from 'react'
+import React, {FC, PropsWithChildren} from 'react'
 
 import './Car.scss';
-import { useNavigate } from 'react-router-dom';
 
 import { ICar } from '../../../intefaces'
-import { useAppDispatch } from '../../../hooks';
 import { carsActions } from '../../../reduxRTK/slices';
+import { carsService } from '../../../services';
+import { useCar } from '../../../hooks';
 
+import emptyCar from '../../../assets/empty.jpg'
 
 interface IProps extends PropsWithChildren {
     car: ICar,   
 }
 
 export const Car: FC<IProps> = ({ car } ) => {
-
-    const dispatch = useAppDispatch()
+    const {image, setImage, fileInputRef, navigate, dispatch} = useCar()
     
-    const navigate = useNavigate()
-
-    
-    const { id, brand } = car
+    const { id, brand, photo } = car
 
     const handleInfoCar = () => {
         navigate(`${id}`, {state: car})
@@ -37,8 +34,22 @@ export const Car: FC<IProps> = ({ car } ) => {
         }
     }
 
+    const handleAddPhoto = async () => {
+            const formData = new FormData()
+            const file: Blob = fileInputRef.current.files[0] 
+            formData.append('photo', file)
+            await carsService.addPhoto(id, formData)
+            setImage(URL.createObjectURL(file))
+    }
+
     return (
         <li className='cars__item'>
+            <div className="cars__img-wrap">
+                <img 
+                    src={image || photo || emptyCar} alt={brand} 
+                    style={{cursor:  'pointer', width: "500px", height: "400px"}}
+                />
+            </div>
             <div className='cars__id-text'>id: {id}</div>
             <div className='cars__brand-text'>brand: {brand}</div>
             <div className="cars_actions">
@@ -63,6 +74,15 @@ export const Car: FC<IProps> = ({ car } ) => {
                     >
                         info
                     </button>
+                </div>
+                <div className="actions-btn-wrap">
+                    <input 
+                        type="file" 
+                        accept={'image/jpeg, image/jpg, image/png'}
+                        style={{display: 'none'}}
+                        onChange={handleAddPhoto}
+                        ref={fileInputRef}
+                    />
                 </div>
             </div>
         </li>

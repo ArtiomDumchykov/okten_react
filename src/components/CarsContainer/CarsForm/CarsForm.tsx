@@ -1,4 +1,4 @@
-import React, { Dispatch, FC, PropsWithChildren, SetStateAction, useEffect } from 'react'
+import React, { FC, PropsWithChildren, useEffect } from 'react'
 import { AxiosError } from 'axios';
 
 import {SubmitHandler, useForm} from 'react-hook-form';
@@ -8,22 +8,24 @@ import './CarsForm.scss';
 
 import { ICar } from '../../../intefaces';
 import { useCarsFrom } from '../../../hooks';
-import { carValidator } from '../../../validators';
 import { carsActions } from '../../../reduxRTK/slices';
+import { carValidator } from '../../../validators';
 
 import { Button } from '../../Button/Button';
+
 interface IProps extends PropsWithChildren {
 
 }
 
 export const CarsForm: FC<IProps> = () => {
 
+
     const {register, reset, handleSubmit, setValue, formState: {errors, isValid}} = useForm<ICar>({
         mode: "all",
         resolver: joiResolver(carValidator)
     })
 
-    const {carForUpdate, dispatch} = useCarsFrom();
+    const {carForUpdate, total_items, currentSize, setQuery, dispatch} = useCarsFrom();
 
 
     useEffect(() => {
@@ -40,6 +42,11 @@ export const CarsForm: FC<IProps> = () => {
         try {
             await dispatch(carsActions.create({car}))
             reset();
+            const lastPage = Math.ceil((total_items + 1 ) / currentSize)
+            setQuery(prev => {
+                prev.set("page", lastPage.toString())
+                return prev
+            })
         } catch (error) {
             const err = error as AxiosError;
             console.log(err)

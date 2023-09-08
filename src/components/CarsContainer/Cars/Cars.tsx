@@ -5,13 +5,11 @@ import './Cars.scss';
 import { useCars } from '../../../hooks';
 import { Car } from '../Car/Car';
 
-interface IProps extends PropsWithChildren {
-
-}
+interface IProps extends PropsWithChildren {}
 
 export const Cars:FC<IProps> = () => {
 
-   const { cars } =useCars()
+   const { cars } = useCars()
 
     return (
         <div>

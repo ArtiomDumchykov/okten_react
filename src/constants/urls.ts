@@ -10,6 +10,7 @@ const urls = {
     cars: {
         base: cars,
         byId: (id: number): string => `${cars}/${id}`,
+        photo: (id: number): string => `${cars}/${id}/photo` 
     },
     auth: {
         login: auth,
